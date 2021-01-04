@@ -1,4 +1,5 @@
 import React from "react";
+import HeaderLoginButtonContainer from "./HeaderLoginButton/HeaderLoginButtonContainer";
 import HeaderNavContainer from "./HeaderNav/HeaderNavContainer";
 import HeaderUserSearchFormContainer from "./HeaderUserSearch/HeaderUserSearchFormContainer";
 
@@ -16,14 +17,8 @@ const Header = (props) => {
 
                 <HeaderNavContainer />
                 
-                <button className="button">
-                    Log In
-                </button>
-                <div className="loader loader_header-loginbutton displaynone">
-                    <div id="fountainG_1" className="fountainG"></div>
-                    <div id="fountainG_2" className="fountainG"></div>
-                    <div id="fountainG_3" className="fountainG"></div>
-                </div>
+                <HeaderLoginButtonContainer />
+                
             </div>
         </div>
     </header>
