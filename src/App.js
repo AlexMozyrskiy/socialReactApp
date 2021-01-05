@@ -23,6 +23,7 @@ const App = () => {
           <LoginModalWindowContainer />
 
           <Switch>
+            <Route exact path="/" render={() => <ProfilePageContainer />} />
             <Route path='/users' render={() => <UsersPage />} />
             <Route path='/profile' render={() => <ProfilePageContainer />} />
             <Route path='/messages' render={() => <MessagesPageContainer />} />

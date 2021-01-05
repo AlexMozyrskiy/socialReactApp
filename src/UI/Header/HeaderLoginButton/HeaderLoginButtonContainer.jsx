@@ -1,12 +1,12 @@
 import React from "react";
-import HeaderLoginButton from "./HeaderLoginButton";
-import { getisModalLoginWindowAciveSelector } from "../../../BLL/loginModalWindow/selectors";
 import { connect } from "react-redux";
+import HeaderLoginButton from "./HeaderLoginButton";
+import { getIsModalLoginWindowAciveSelector } from "../../../BLL/loginModalWindow/selectors";
 import { setIsModalLoginWindowActive } from "../../../BLL/loginModalWindow/actionCreators";
 
 const HeaderLoginButtonContainer = (props) => {
 
-    function toogleIsModalLoginWindowAcive(IsModalLoginWindowAcive) {
+    function toogleIsModalLoginWindowAcive(IsModalLoginWindowAcive) {       // функция для изменение в стейте состояния показывать ли млжальное окно логина
         props.setIsModalLoginWindowActive(IsModalLoginWindowAcive);
     }
 
@@ -23,7 +23,7 @@ const HeaderLoginButtonContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isModalLoginWindowAcive: getisModalLoginWindowAciveSelector(state)
+        isModalLoginWindowAcive: getIsModalLoginWindowAciveSelector(state)
     }
 }
 

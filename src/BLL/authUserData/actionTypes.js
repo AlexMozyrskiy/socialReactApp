@@ -1,0 +1,1 @@
+export const LOGGED_IN_OUT_USER_DATA = 'socialNetwork/duck/LOGGED_IN_OUT_USER_DATA';

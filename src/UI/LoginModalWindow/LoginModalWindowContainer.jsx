@@ -1,6 +1,6 @@
 import React from "react";
 import LoginModalWindow from "./LoginModalWindow";
-import { getisModalLoginWindowAciveSelector } from "../../BLL/loginModalWindow/selectors";
+import { getIsModalLoginWindowAciveSelector } from "../../BLL/loginModalWindow/selectors";
 import { setIsModalLoginWindowActive } from "../../BLL/loginModalWindow/actionCreators";
 import { connect } from "react-redux";
 
@@ -19,7 +19,7 @@ const LoginModalWindowContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isModalLoginWindowAcive: getisModalLoginWindowAciveSelector(state)
+        isModalLoginWindowAcive: getIsModalLoginWindowAciveSelector(state)
     }
 }
 
