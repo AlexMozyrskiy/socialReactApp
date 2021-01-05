@@ -9,14 +9,14 @@ const axiosInstance = axios.create({
 });
 
 export const loginAPI = {
-    login(email, password, rememberMe = false, captcha = false) {
+    logIn(email, password, rememberMe = false, captcha = false) {
         return axiosInstance.post(`auth/login`, { email: email, password: password, rememberMe: rememberMe, captcha: captcha })
             .then(response => {
                 return response.data;
             });
     },
 
-    logout() {
+    logOut() {
         return axiosInstance.delete(`auth/login`)
             .then(response => {
                 return response.data;

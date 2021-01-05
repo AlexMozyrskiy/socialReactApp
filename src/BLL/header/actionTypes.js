@@ -1,0 +1,1 @@
+export const IS_HEADER_LOGIN_BUTTON_CLICKED = 'socialNetwork/header/IS_HEADER_LOGIN_BUTTON_CLICKED';

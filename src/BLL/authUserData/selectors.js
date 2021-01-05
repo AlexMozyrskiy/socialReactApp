@@ -1,3 +1,3 @@
-export const getIsModalLoginWindowAciveSelector =  (state) => {
-    return state.loginModalWindow.isModalLoginWindowAcive;
+export const getIsLoggedInSelector =  (state) => {
+    return state.userData.isLoggedIn;
 }

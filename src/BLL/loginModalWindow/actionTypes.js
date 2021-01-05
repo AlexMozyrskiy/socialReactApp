@@ -1,1 +1,2 @@
-export const IS_MODAL_LOGIN_WINDOW_ACTIVE = 'socialNetwork/duck/IS_MODAL_LOGIN_WINDOW_ACTIVE';
+export const IS_MODAL_LOGIN_WINDOW_ACTIVE = 'socialNetwork/modalLoginWindow/IS_MODAL_LOGIN_WINDOW_ACTIVE';
+export const IS_MODAL_LOGIN_WINDOW_BUTTON_CLICKED = 'socialNetwork/modalLoginWindow/IS_MODAL_LOGIN_WINDOW_BUTTON_CLICKED';

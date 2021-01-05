@@ -1,11 +1,12 @@
-import { setIsModalLoginWindowActive } from "./actionCreators";
+import { setIsModalLoginWindowActive, setIsModalLoginWindowButtonClicked } from "./actionCreators";
 import loginModalWindowReducer from "./reducer";
 
 /* Тест при нажатии на кнопку LogIn в Хедере в стейте меняется isModalLoginWindowAcive на true */
 let initialState = {
     isModalLoginWindowAcive: false,
     isCapthaActive: false,
-    captchaURL: ""
+    captchaURL: "",
+    isLoginButtonClicked: false
 }
 
 it("after click on the Login Button loginModalWindow.isModalLoginWindowAcive must to be true", () => {
@@ -41,3 +42,18 @@ it("after click on the cross on Login Modal Window loginModalWindow.isModalLogin
 });
 
 /* / Тест при нажатии на крстик в окне логина в стейте меняется isModalLoginWindowAcive на false */
+
+
+/* Тест при нажатии на кнопку LogIn в модальном окне в стейте меняется isLoginButtonClicked на true */
+it("after click on the Login Button loginModalWindow.isLoginButtonClicked must to be true", () => {
+    // 1. test data
+    let action = setIsModalLoginWindowButtonClicked(true);
+
+    // 2. action
+    let newState = loginModalWindowReducer(initialState, action);
+
+    // 3. expectation
+    expect(newState.isLoginButtonClicked).toBe(true);
+});
+
+/* / Тест при нажатии на кнопку LogIn в модальном окне в стейте меняется isLoginButtonClicked на true */

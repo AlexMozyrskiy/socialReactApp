@@ -4,10 +4,12 @@ import { reducer as formReducer } from "redux-form";
 import { compose } from "redux";
 import loginModalWindowReducer from "../loginModalWindow/reducer";
 import authUserDataReducer from "../authUserData/reducer";
+import headerReducer from "../header/reducer";
 
 let reducers = combineReducers({
     loginModalWindow: loginModalWindowReducer,
     userData: authUserDataReducer,
+    header: headerReducer,
     form: formReducer
 });
 

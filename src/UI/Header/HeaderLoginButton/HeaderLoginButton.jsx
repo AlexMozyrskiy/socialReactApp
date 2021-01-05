@@ -4,10 +4,17 @@ import cn from "classnames";
 const HeaderLoginButton = (props) => {
     return (
         <>
-            <button onClick={() => props.toogleIsModalLoginWindowAcive(true)} className={ cn("button", { 'displaynone': props.isModalLoginWindowAcive } ) }>
-                Log In
-            </button>
-            <div className={cn('loader', 'loader_header-loginbutton', { 'displaynone': !props.isModalLoginWindowAcive })}>
+            {
+                props.isLoggedIn
+                ? <button className="button">              {/* если залогинен покажем кнопку Log Out с соответствующим функционалом */} 
+                    Log Out
+                </button>
+                :
+                <button onClick={() => props.toogleIsModalLoginWindowAcive(true)} className={ cn("button", { 'displaynone': props.isModalLoginWindowAcive } ) }>        {/* если не залогинен покажем кнопку Log In с соответствующим функционалом */} 
+                    Log In
+                </button>
+            }
+            <div className={cn('loader', 'loader_header-loginbutton', { 'displaynone': !props.isModalLoginWindowAcive })}>      { /* Если активно покажем прелоадер вместо кнопки */ }
                 <div id="fountainG_1" className="fountainG"></div>
                 <div id="fountainG_2" className="fountainG"></div>
                 <div id="fountainG_3" className="fountainG"></div>

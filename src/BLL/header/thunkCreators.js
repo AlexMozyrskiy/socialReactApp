@@ -1,10 +1,10 @@
-import { setIsModalLoginWindowActive, setIsModalLoginWindowButtonClicked } from "./actionCreators";
+import { setIsModalLoginWindowActive, setIsLoginButtonClicked } from "./actionCreators";
 import { loginAPI } from "./../../DAL/login/api";
 import { isAuthThunkCreator } from "./../authUserData/thunkCreators";
 
 
 export const loginThunkCreator = (email, password, rememberMe = false, captcha = false) => async (dispatch) => {
-    dispatch(setIsModalLoginWindowButtonClicked(true));
+    dispatch(setIsLoginButtonClicked(true));
 
     const data = await loginAPI.logIn(email, password, rememberMe, captcha);
 
@@ -15,5 +15,5 @@ export const loginThunkCreator = (email, password, rememberMe = false, captcha =
         alert("Some Error");
     }
 
-    dispatch(setIsModalLoginWindowButtonClicked(false));
+    dispatch(setIsLoginButtonClicked(false));
 }
