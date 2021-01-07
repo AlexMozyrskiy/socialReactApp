@@ -1,21 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 import HeaderLoginButton from "./HeaderLoginButton";
-import { getIsModalLoginWindowAciveSelector } from "../../../BLL/loginModalWindow/selectors";
 import { getIsLoggedInSelector } from "../../../BLL/authUserData/selectors";
+import { getIsHeaderLoginButtonClickedSelector } from "../../../BLL/header/selectors";
 import { setIsModalLoginWindowActive } from "../../../BLL/loginModalWindow/actionCreators";
+import { setIsHeaderLoginButtonClicked } from "../../../BLL/header/actionCreators";
+import { logOutThunkCreator } from "../../../BLL/header/thunkCreators";
 
 const HeaderLoginButtonContainer = (props) => {
 
-    function toogleIsModalLoginWindowAcive(isModalLoginWindowAcive) {       // функция для изменение в стейте состояния показывать ли млжальное окно логина
+    function toogleIsModalLoginWindowAcive(isModalLoginWindowAcive) {       // функция для изменение в стейте состояния показывать ли модальное окно логина
         props.setIsModalLoginWindowActive(isModalLoginWindowAcive);
+        props.setIsHeaderLoginButtonClicked(isModalLoginWindowAcive);
+    }
+
+    function logOutButtonClicked() {       // функция для запуска санки логаута
+        props.logOutThunkCreator();
     }
 
     return (
         <HeaderLoginButton
-            isModalLoginWindowAcive={props.isModalLoginWindowAcive}
             toogleIsModalLoginWindowAcive={toogleIsModalLoginWindowAcive}
             isLoggedIn={props.isLoggedIn}
+            isHeaderLoginButtonClicked={props.isHeaderLoginButtonClicked}
+            logOutButtonClicked={logOutButtonClicked}
         />
     );
 }
@@ -25,9 +33,12 @@ const HeaderLoginButtonContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isModalLoginWindowAcive: getIsModalLoginWindowAciveSelector(state),             // активно ли модальное окно логина
-        isLoggedIn: getIsLoggedInSelector(state)
+        isLoggedIn: getIsLoggedInSelector(state),
+        isHeaderLoginButtonClicked: getIsHeaderLoginButtonClickedSelector(state)
     }
 }
 
-export default connect(mapStateToProps, {setIsModalLoginWindowActive})(HeaderLoginButtonContainer);
+export default connect(mapStateToProps, {
+    setIsModalLoginWindowActive, setIsHeaderLoginButtonClicked,
+    logOutThunkCreator
+})(HeaderLoginButtonContainer);

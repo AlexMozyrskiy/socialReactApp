@@ -4,7 +4,7 @@ import SideBarUserInfoContainer from "./SideBarUserInfo/SideBarUserInfoContainer
 
 const SideBar = () => {
     return (
-        <div class="grid-wrapper__sidebar-left sidebar-left">
+        <div className="grid-wrapper__sidebar-left sidebar-left">
             
             <SideBarUserInfoContainer />
 

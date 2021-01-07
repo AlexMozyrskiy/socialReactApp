@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import HeaderContainer from "./UI/Header/HraderContainer";
+import HeaderContainer from "./UI/Header/HeaderContainer";
 import './App.css';
 import UsersPage from "./UI/UsersPage/UsersPage";
 import NotFoundPage from "./UI/NotFoundPage";
@@ -14,9 +14,9 @@ const App = () => {
     <>
       <HeaderContainer />
 
-      <div class="container">
+      <div className="container">
 
-        <div class="grid-wrapper">
+        <div className="grid-wrapper">
 
           <SideBarContainer />
 

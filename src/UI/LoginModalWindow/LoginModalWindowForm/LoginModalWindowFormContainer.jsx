@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import LoginModalWindowForm from "./LoginModalWindowForm";
-import { loginThunkCreator } from "../../../BLL/loginModalWindow/thunkCreators"
+import { logInThunkCreator } from "../../../BLL/loginModalWindow/thunkCreators"
 import { getIsLoginButtonClickedSelector } from "../../../BLL/loginModalWindow/selectors";
 
 const LoginModalWindowFormContainer = (props) => {
 
     function onSubmit(formData) {
-        console.log(formData);
         // тут действия которые выполнятся при сабмите формы
-        props.loginThunkCreator(formData.email, formData.password, formData.rememberMe, formData.captcha);
+        props.logInThunkCreator(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
 
     return (
@@ -23,8 +22,8 @@ const LoginModalWindowFormContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isLoginButtonClicked: getIsLoginButtonClickedSelector(state)
+        isLoginButtonClicked: getIsLoginButtonClickedSelector(state),
     }
 }
 
-export default connect(mapStateToProps, { loginThunkCreator })(LoginModalWindowFormContainer);
+export default connect(mapStateToProps, { logInThunkCreator })(LoginModalWindowFormContainer);

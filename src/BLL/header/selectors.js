@@ -1,7 +1,3 @@
-export const getIsModalLoginWindowAciveSelector =  (state) => {
-    return state.loginModalWindow.isModalLoginWindowAcive;
-}
-
-export const getIsLoginButtonClickedSelector =  (state) => {
-    return state.loginModalWindow.isLoginButtonClicked;
+export const getIsHeaderLoginButtonClickedSelector =  (state) => {
+    return state.header.isLoginButtonClicked;
 }
