@@ -1,17 +1,25 @@
+import { userInfoAPI } from "../../DAL/userInfo/api";
 import { loginAPI } from "../../DAL/login/api";
-import { setUserData } from "./actionCreators";
-import { setIsModalLoginWindowButtonClicked } from "../loginModalWindow/actionCreators";
-
+import {
+    setUserData, setUserStatusIntoState,
+    setUserInfoIntoState
+} from "./actionCreators";
 
 export const isAuthThunkCreator = () => async (dispatch) => {
-    dispatch(setIsModalLoginWindowButtonClicked(true));
-
     const data = await loginAPI.isAuth();
 
     if (data.resultCode === 0) {            // если пользователь залогинен
-        const userData = { userId: data.data.id, userLogin: data.data.login, userEmail: data.data.email, isUserLoggedIn: true }
+        const userData = { userId: data.data.id, userLogin: data.data.login, userEmail: data.data.email, isUserLoggedIn: true }  // 1. задиспатчим первоначальные данные(которые приходят с ответом от сервера) в стейт
         dispatch(setUserData(userData));
-    }
 
-    dispatch(setIsModalLoginWindowButtonClicked(false));
+        const status = await userInfoAPI.getUserStatus(data.data.id);
+        if(status) {
+            dispatch(setUserStatusIntoState(status));
+        }
+
+        const userInfo = await userInfoAPI.getUserInfoForProfilePage(data.data.id);
+        if(userInfo) {
+            dispatch(setUserInfoIntoState(userInfo));
+        }
+    }
 }

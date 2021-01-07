@@ -6,7 +6,7 @@ const HeaderLoginButton = (props) => {
         <>
             {
                 props.isLoggedIn
-                ? <button className="button" onClick={ () => props.logOutButtonClicked() }>              {/* если залогинен покажем кнопку Log Out с соответствующим функционалом */} 
+                ? <button className={cn("button", { 'displaynone': props.isHeaderLoginButtonClicked })} onClick={ () => props.logOutButtonClicked() }>              {/* если залогинен покажем кнопку Log Out с соответствующим функционалом */} 
                     Log Out
                 </button>
                 :
