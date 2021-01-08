@@ -2,7 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import LoginModalWindowForm from "./LoginModalWindowForm";
 import { logInThunkCreator } from "../../../BLL/loginModalWindow/thunkCreators"
-import { getIsLoginButtonClickedSelector } from "../../../BLL/loginModalWindow/selectors";
+import {
+    getIsLoginButtonClickedSelector, getIsCaptchActiveSelector,
+    getCaptchaURLSelector
+} from "../../../BLL/loginModalWindow/selectors";
 
 const LoginModalWindowFormContainer = (props) => {
 
@@ -15,6 +18,8 @@ const LoginModalWindowFormContainer = (props) => {
         <LoginModalWindowForm
             onSubmit={onSubmit}
             isLoginButtonClicked={props.isLoginButtonClicked}
+            isCapthaActive={props.isCapthaActive}
+            captchaURL={props.captchaURL}
         />
     );
 }
@@ -23,6 +28,8 @@ const LoginModalWindowFormContainer = (props) => {
 const mapStateToProps = (state) => {
     return {
         isLoginButtonClicked: getIsLoginButtonClickedSelector(state),
+        isCapthaActive: getIsCaptchActiveSelector(state),
+        captchaURL: getCaptchaURLSelector(state)
     }
 }
 

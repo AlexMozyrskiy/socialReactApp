@@ -1,4 +1,7 @@
-import { setIsModalLoginWindowActive, setIsModalLoginWindowButtonClicked } from "./actionCreators";
+import {
+    setIsModalLoginWindowActive, setIsModalLoginWindowButtonClicked,
+    setCaptchaIntoState
+} from "./actionCreators";
 import loginModalWindowReducer from "./reducer";
 
 /* Тест при нажатии на кнопку LogIn в Хедере в стейте меняется isModalLoginWindowAcive на true */
@@ -57,3 +60,34 @@ it("after click on the Login Button loginModalWindow.isLoginButtonClicked must t
 });
 
 /* / Тест при нажатии на кнопку LogIn в модальном окне в стейте меняется isLoginButtonClicked на true */
+
+
+/* Тест если получили url капчи поменяли isCapthaActive  на true */
+it("if on response we get captcha url set isCapthaActive on true", () => {
+    // 1. test data
+    let action = setCaptchaIntoState(true, "https//someURL");
+
+    // 2. action
+    let newState = loginModalWindowReducer(initialState, action);
+
+    // 3. expectation
+    expect(newState.isCapthaActive).toBe(true);
+});
+
+/* / Тест если получили url капчи поменяли isCapthaActive  на true */
+
+
+/* Тест если получили url капчи поменяли captchaURL  на этот URL */
+it("if on response we get captcha url set captchaURL on getting URL", () => {
+    // 1. test data
+    const captchaURL = "https//someURL";
+    let action = setCaptchaIntoState(true, captchaURL);
+
+    // 2. action
+    let newState = loginModalWindowReducer(initialState, action);
+
+    // 3. expectation
+    expect(newState.captchaURL).toBe(captchaURL);
+});
+
+/* / Тест если получили url капчи поменяли captchaURL  на этот URL */

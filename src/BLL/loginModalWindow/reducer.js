@@ -1,9 +1,12 @@
-import { IS_MODAL_LOGIN_WINDOW_ACTIVE, IS_MODAL_LOGIN_WINDOW_BUTTON_CLICKED } from "./actionTypes";
+import {
+    IS_MODAL_LOGIN_WINDOW_ACTIVE, IS_MODAL_LOGIN_WINDOW_BUTTON_CLICKED,
+    SET_CAPTCHA_INTO_STATE
+} from "./actionTypes";
 
 let initialState = {
     isModalLoginWindowAcive: false,
     isCapthaActive: false,
-    captchaURL: "",
+    captchaURL: null,
     isLoginButtonClicked: false
 };
 
@@ -21,6 +24,15 @@ const loginModalWindowReducer = (state = initialState, action) => {
             const superState = {
                 ...state,
                 isLoginButtonClicked: action.isLoginButtonClicked
+            };
+            return superState;
+        }
+
+        case SET_CAPTCHA_INTO_STATE: {
+            const superState = {
+                ...state,
+                isCapthaActive: action.isCapthaActive,
+                captchaURL: action.captchaURL
             };
             return superState;
         }
