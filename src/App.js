@@ -12,7 +12,7 @@ import { getIsAppInitializedSelector } from "./BLL/initializedApp/selectors";
 import { initializedAppThunkCreator } from "./BLL/initializedApp/thunkCreators";
 import { getIsLoggedInSelector } from "./BLL/authUserData/selectors";
 import { connect } from "react-redux";
-import AppPreloader from "./UI/common/Preloader";
+import AppPreloader from "./UI/common/AppPreloader";
 
 const App = (props) => {
 

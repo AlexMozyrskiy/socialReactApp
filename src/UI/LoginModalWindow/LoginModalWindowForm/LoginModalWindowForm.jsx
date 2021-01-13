@@ -1,6 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import cn from "classnames";
+import ButtonPreloader from "../../common/ButtonPreloader";
 
 const LoginModalWindowForm = (props) => {
     return (
@@ -15,11 +16,7 @@ const LoginModalWindowForm = (props) => {
                 : null
             }
             <button className={cn("button", "button_login", {"displaynone": props.isLoginButtonClicked})}>Sign In</button>
-            <div className={cn("loader", "loader_loginWindow-loginbutton", {"displaynone": !props.isLoginButtonClicked})}>
-                <div id="fountainG_1" className="fountainG"></div>
-                <div id="fountainG_2" className="fountainG"></div>
-                <div id="fountainG_3" className="fountainG"></div>
-            </div>
+            <ButtonPreloader displayNone={!props.isLoginButtonClicked} dotsCount={3} classes={["loader", "loader_loginWindow-loginbutton"]} />
         </form>
     );
 }

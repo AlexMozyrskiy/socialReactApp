@@ -1,5 +1,6 @@
 import React from "react";
 import cn from "classnames";
+import ButtonPreloader from "../../common/ButtonPreloader";
 
 const HeaderLoginButton = (props) => {
     return (
@@ -14,11 +15,7 @@ const HeaderLoginButton = (props) => {
                     Log In
                 </button>
             }
-            <div className={cn('loader', 'loader_header-loginbutton', { 'displaynone': !props.isHeaderLoginButtonClicked })}>      { /* Если активно покажем прелоадер вместо кнопки */ }
-                <div id="fountainG_1" className="fountainG"></div>
-                <div id="fountainG_2" className="fountainG"></div>
-                <div id="fountainG_3" className="fountainG"></div>
-            </div>
+            <ButtonPreloader displayNone={!props.isHeaderLoginButtonClicked} dotsCount={3} classes={["loader", "loader_header-loginbutton"]} />
         </>
     );
 }
