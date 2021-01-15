@@ -1,5 +1,5 @@
 import React from "react";
-import SideBarNav from "./SideBarNav/SideBarNav";
+import SideBarNavContainer from "./SideBarNav/SideBarNavContainer";
 import SideBarUserInfoContainer from "./SideBarUserInfo/SideBarUserInfoContainer";
 
 const SideBar = () => {
@@ -8,7 +8,7 @@ const SideBar = () => {
             
             <SideBarUserInfoContainer />
 
-            <SideBarNav />
+            <SideBarNavContainer />
 
         </div>
     );

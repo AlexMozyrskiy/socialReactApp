@@ -1,8 +1,29 @@
 import React from "react";
-import ProfilePage from "./ProfilePage";
+import OwnerProfilePage from "./OwnerProfilePage/OwnerProfilePage";
+import SomeoneElseProfilePageContainer from "./SomeoneElseProfilePage/SomeoneElseProfilePageContainer";
+import { withRouter } from "react-router-dom";
+import { getIsLoggedInSelector, getOwnerIdSelector } from "../../BLL/authUserData/selectors";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-const ProfilePageContainer = () => {
-    return <ProfilePage />
+const ProfilePageContainer = (props) => {
+    if(props.ownerId == props.match.params.userId) {
+        return <OwnerProfilePage ownerId={props.ownerId} />
+    } else {
+        return <SomeoneElseProfilePageContainer userId={props.match.params.userId} />
+    }
 }
 
-export default ProfilePageContainer;
+
+
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: getIsLoggedInSelector(state),
+        ownerId: getOwnerIdSelector(state)
+    }
+};
+
+export default compose(
+    connect(mapStateToProps, {  }),
+    withRouter
+)(ProfilePageContainer);

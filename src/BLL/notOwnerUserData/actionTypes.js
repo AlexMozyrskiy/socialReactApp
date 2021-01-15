@@ -1,0 +1,2 @@
+export const SET_USER_STATUS_INTO_STATE = 'socialNetwork/notOwnerUserData/SET_USER_STATUS_INTO_STATE';
+export const SET_USER_INFO_INTO_STATE = 'socialNetwork/notOwnerUserData/SET_USER_INFO_INTO_STATE';

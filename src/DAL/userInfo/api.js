@@ -21,5 +21,19 @@ export const userInfoAPI = {
             .then(response => {
                 return response.data;
             });
+    },
+
+    updateStatus(status) {
+        return axiosInstance.put(`profile/status`, { status: status });
+    },
+
+    putPhoto(imageFile) {
+        const formData = new FormData();
+        formData.append("image", imageFile);   // первый аргумент, то что ожидает сервер, из API документации взято
+        return axiosInstance.put(`/profile/photo`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
     }
 }

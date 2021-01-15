@@ -1,8 +1,20 @@
 import React from "react";
 import cn from "classnames";
 import LoginModalWindowFormContainer from "./LoginModalWindowForm/LoginModalWindowFormContainer";
+// import { Redirect } from "react-router-dom";
 
 const LoginModalWindow = (props) => {
+
+    // if(props.isLoggedIn) {
+    //     return <Redirect to="/" />
+    // }
+
+    // React.useEffect( () => {
+    //     debugger
+    //     // return <Redirect to="/" />
+    //     alert('useEffect, props.isLoggedIn - ', props.isLoggedIn)
+    // }, [props.isLoggedIn] );
+
     return (
         <div className={ cn("login", {"login__deactivate": !props.isModalLoginWindowAcive}, {"login__activate": props.isModalLoginWindowAcive}) }>
 
@@ -29,6 +41,6 @@ const LoginModalWindow = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export default LoginModalWindow;

@@ -6,13 +6,15 @@ import loginModalWindowReducer from "../loginModalWindow/reducer";
 import authUserDataReducer from "../authUserData/reducer";
 import headerReducer from "../header/reducer";
 import initializedAppReducer from "../initializedApp/reducer";
+import notOwnerUserDataReducer from "../notOwnerUserData/reducer";
 
 
 let reducers = combineReducers({
     loginModalWindow: loginModalWindowReducer,
-    userData: authUserDataReducer,
+    authUserData: authUserDataReducer,
     header: headerReducer,
     initializedApp: initializedAppReducer,
+    notOwnerUserData: notOwnerUserDataReducer,
     form: formReducer
 });
 

@@ -10,8 +10,9 @@ import LoginModalWindowContainer from "./UI/LoginModalWindow/LoginModalWindowCon
 import SideBarContainer from "./UI/SideBar/SideBarContainer";
 import { getIsAppInitializedSelector } from "./BLL/initializedApp/selectors";
 import { initializedAppThunkCreator } from "./BLL/initializedApp/thunkCreators";
-import { getIsLoggedInSelector } from "./BLL/authUserData/selectors";
+import { getIsLoggedInSelector, getOwnerIdSelector } from "./BLL/authUserData/selectors";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import AppPreloader from "./UI/common/AppPreloader";
 
 const App = (props) => {
@@ -37,9 +38,15 @@ const App = (props) => {
           <LoginModalWindowContainer />
 
           <Switch>
-            <Route exact path="/" render={() => <ProfilePageContainer />} />
+            { /* Если залогинены редиректнет на свой парофиль, если нет на профиль Димыча */}
+            {
+              props.isLoggedIn
+              ? <Route exact path="/" render={() => <Redirect to={"profile/" + props.ownerId} />} />
+              : <Route exact path="/" render={() => <Redirect to={"profile/" + 2} />} />
+            }
+            
             <Route path='/users' render={() => <UsersPage />} />
-            <Route path='/profile' render={() => <ProfilePageContainer />} />
+            <Route path='/profile/:userId?' render={() => <ProfilePageContainer />} />
             <Route path='/messages' render={() => <MessagesPageContainer />} />
             <Route path='*' render={() => <NotFoundPage />} />
           </Switch>
@@ -57,7 +64,8 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAppInitialized: getIsAppInitializedSelector(state),
-    isLoggedIn: getIsLoggedInSelector(state)
+    isLoggedIn: getIsLoggedInSelector(state),
+    ownerId: getOwnerIdSelector(state)
   }
 }
 

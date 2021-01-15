@@ -3,6 +3,7 @@ import LoginModalWindow from "./LoginModalWindow";
 import { getIsModalLoginWindowAciveSelector } from "../../BLL/loginModalWindow/selectors";
 import { setIsModalLoginWindowActive } from "../../BLL/loginModalWindow/actionCreators";
 import { getIsHeaderLoginButtonClickedSelector } from "../../BLL/header/selectors";
+import { getIsLoggedInSelector } from "../../BLL/authUserData/selectors";
 import { setIsHeaderLoginButtonClicked } from "../../BLL/header/actionCreators";
 import { connect } from "react-redux";
 
@@ -17,6 +18,7 @@ const LoginModalWindowContainer = (props) => {
         isModalLoginWindowAcive={props.isModalLoginWindowAcive}
         toogleIsModalLoginWindowAcive={toogleIsModalLoginWindowAcive}
         isHeaderLoginButtonClicked={props.isHeaderLoginButtonClicked}
+        isLoggedIn={props.isLoggedIn}
     />
 }
 
@@ -24,7 +26,8 @@ const LoginModalWindowContainer = (props) => {
 const mapStateToProps = (state) => {
     return {
         isModalLoginWindowAcive: getIsModalLoginWindowAciveSelector(state),
-        isHeaderLoginButtonClicked: getIsHeaderLoginButtonClickedSelector(state)
+        isHeaderLoginButtonClicked: getIsHeaderLoginButtonClickedSelector(state),
+        isLoggedIn: getIsLoggedInSelector(state)
     }
 }
 
