@@ -7,10 +7,13 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 const ProfilePageContainer = (props) => {
-    if(props.ownerId == props.match.params.userId) {
-        return <OwnerProfilePage ownerId={props.ownerId} />
+    if (props.ownerId == props.match.params.userId) {
+        return <OwnerProfilePage
+            ownerId={props.ownerId}
+            userIdFromUrl={props.match.params.userId}          // id из адресной строки
+        />
     } else {
-        return <SomeoneElseProfilePageContainer userId={props.match.params.userId} />
+        return <SomeoneElseProfilePageContainer userIdFromUrl={props.match.params.userId} />
     }
 }
 
@@ -24,6 +27,6 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps, {  }),
+    connect(mapStateToProps, {}),
     withRouter
 )(ProfilePageContainer);

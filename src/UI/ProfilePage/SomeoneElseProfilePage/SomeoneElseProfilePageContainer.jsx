@@ -7,8 +7,8 @@ import * as selectors from "../../../BLL/notOwnerUserData/selectors";
 const SomeoneElseProfilePageContainer = (props) => {
 
     useEffect( () => {
-        props.notOwnerUserProfileThunkCreator(props.userId);
-    }, [props.userId] );            // userId пришло из ProfilePageContainer из адресной строки
+        props.notOwnerUserProfileThunkCreator(props.userIdFromUrl);
+    }, [props.userIdFromUrl] );            // userIdFromUrl пришло из ProfilePageContainer из адресной строки
 
     const contactsKeysArray = Object.keys(props.contacts);
 
