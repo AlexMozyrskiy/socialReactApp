@@ -1,7 +1,7 @@
 import React from "react";
 // import { withRouter } from "react-router-dom";
 import OwnerProfilePageFormContainer from "./OwnerProfilePageForm/OwnerProfilePageFormContainer";
-import OwnerProfilePagePhoto from "./OwnerProfilePagePhoto/OwnerProfilePagePhoto";
+import OwnerProfilePagePhotoContainer from "./OwnerProfilePagePhoto/OwnerProfilePagePhotoContainer";
 
 const OwnerProfilePage = (props) => {
     
@@ -10,7 +10,7 @@ const OwnerProfilePage = (props) => {
 
             <OwnerProfilePageFormContainer />
             
-            <OwnerProfilePagePhoto />
+            <OwnerProfilePagePhotoContainer />
 
         </div>
     );

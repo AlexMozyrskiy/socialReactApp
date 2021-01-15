@@ -17,7 +17,7 @@ export const isAuthThunkCreator = () => async (dispatch) => {
             dispatch(setUserStatusIntoState(status));
         }
 
-        const userInfo = await userInfoAPI.getUserInfoForProfilePage(data.data.id);
+        const userInfo = await userInfoAPI.getUserInfo(data.data.id);
         if(userInfo) {
             dispatch(setUserInfoIntoState(userInfo));
         }

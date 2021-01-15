@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 });
 
 export const userInfoAPI = {
-    getUserInfoForProfilePage(id) {
+    getUserInfo(id) {
         return axiosInstance.get(`profile/${id}`)
             .then(response => {
                 return response.data;
@@ -23,11 +23,11 @@ export const userInfoAPI = {
             });
     },
 
-    updateStatus(status) {
+    updateOwnerStatus(status) {
         return axiosInstance.put(`profile/status`, { status: status });
     },
 
-    putPhoto(imageFile) {
+    putOwnerPhoto(imageFile) {
         const formData = new FormData();
         formData.append("image", imageFile);   // первый аргумент, то что ожидает сервер, из API документации взято
         return axiosInstance.put(`/profile/photo`, formData, {

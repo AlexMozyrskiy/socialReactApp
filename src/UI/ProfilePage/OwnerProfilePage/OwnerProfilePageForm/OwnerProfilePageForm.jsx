@@ -24,7 +24,7 @@ const OwnerProfilePage = (props) => {
                 <p className="profile__contacts-title">My Contacts:</p>{" "}
                 <ul className="profile__contacts-ul">
                     { props.contactsKeysArray.map(contactKey => {
-                        return (<li>{contactKey + ": "}<input className="profile__item" type="text"
+                        return (<li key={contactKey}>{contactKey + ": "}<input className="profile__item" type="text"
                         placeholder={ props.contacts[contactKey] ? props.contacts[contactKey] : "Enter " + contactKey + " information" } /></li>)
                     }) }
                 </ul>

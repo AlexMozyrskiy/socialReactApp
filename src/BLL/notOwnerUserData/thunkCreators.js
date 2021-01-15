@@ -5,7 +5,7 @@ import {
 } from "./actionCreators";
 
 export const notOwnerUserProfileThunkCreator = (id) => async (dispatch) => {
-    const userInfo = await userInfoAPI.getUserInfoForProfilePage(id);
+    const userInfo = await userInfoAPI.getUserInfo(id);
 
     if (userInfo) {
         dispatch(setNotOwnerUserInfoIntoState(userInfo));
