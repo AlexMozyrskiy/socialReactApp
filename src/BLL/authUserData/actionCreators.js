@@ -1,6 +1,6 @@
 import {
     LOGGED_IN_OUT_USER_DATA, SET_USER_STATUS_INTO_STATE,
-    SET_USER_INFO_INTO_STATE
+    SET_USER_INFO_INTO_STATE, SET_USER_PHOTOS_INTO_STATE
 } from "./actionTypes";
 
 export const setUserData = ({ userId, userLogin, userEmail, isUserLoggedIn }) => {
@@ -32,5 +32,13 @@ export const setUserInfoIntoState = (userInfo) => {
         vk: userInfo.contacts.vk,
         website: userInfo.contacts.website,
         youtube: userInfo.contacts.youtube
+    }
+}
+
+export const setUserPhotosIntoState = (photos) => {
+    return {
+        type: SET_USER_PHOTOS_INTO_STATE,
+        photoSmall: photos.small,
+        photoLarge: photos.large,
     }
 }

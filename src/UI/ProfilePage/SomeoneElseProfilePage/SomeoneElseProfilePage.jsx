@@ -12,6 +12,9 @@ const SomeoneElseProfilePage = (props) => {
                 <p className="profile__item-title">My Name:</p>{" "}<p className="profile__item">{ props.fullName ? props.fullName : "I Have No Name" }</p>
             </div>
             <div className="profile__item-wrapper">
+                <p className="profile__item-title">About Me:</p>{" "}<p className="profile__item">{ props.aboutMe ? props.aboutMe : "I Have No About Me Information" }</p>
+            </div>
+            <div className="profile__item-wrapper">
                 <p className="profile__item-title">Looking for a Job:</p>{" "}<p className="profile__item">{ props.lookingForAJob ? "Yes" : "No" }</p>
             </div>
             <div className="profile__item-wrapper">
@@ -21,7 +24,7 @@ const SomeoneElseProfilePage = (props) => {
                 <p className="profile__contacts-title">My Contacts:</p>{" "}
                 <ul className="profile__contacts-ul">
                     { props.contactsKeysArray.map(contactKey => {
-                        return <li key={contactKey}>{contactKey + ": "} { props.contacts[contactKey] ? <a href="https://www.facebook.com" target="_blank">{ props.contacts[contactKey] }</a> : "No " + contactKey + " Information" } </li>
+                        return <li key={contactKey}>{contactKey + ": "} { props.contacts[contactKey] ? <a href={props.contacts[contactKey]} target="_blank">{ props.contacts[contactKey] }</a> : "No " + contactKey + " Information" } </li>
                     }) }
                 </ul>
             </div>

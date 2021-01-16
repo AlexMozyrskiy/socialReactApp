@@ -27,9 +27,13 @@ export const userInfoAPI = {
         return axiosInstance.put(`profile/status`, { status: status });
     },
 
-    putOwnerPhoto(imageFile) {
+    updateOwnerInfo(ownerInfoObj) {
+        return axiosInstance.put(`profile`, ownerInfoObj);
+    },
+
+    updateOwnerPhoto(photo) {
         const formData = new FormData();
-        formData.append("image", imageFile);   // первый аргумент, то что ожидает сервер, из API документации взято
+        formData.append("image", photo);   // первый аргумент, то что ожидает сервер, из API документации взято
         return axiosInstance.put(`/profile/photo`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"

@@ -1,4 +1,4 @@
-import { LOGGED_IN_OUT_USER_DATA, SET_USER_STATUS_INTO_STATE, SET_USER_INFO_INTO_STATE } from "./actionTypes";
+import { LOGGED_IN_OUT_USER_DATA, SET_USER_STATUS_INTO_STATE, SET_USER_INFO_INTO_STATE, SET_USER_PHOTOS_INTO_STATE } from "./actionTypes";
 
 const initialState = {
     isLoggedIn: false,
@@ -43,6 +43,18 @@ const authUserDataReducer = (state = initialState, action) => {
             const superState = {
                 ...state,
                 status: action.status
+            };
+            return superState;
+        }
+
+        case SET_USER_PHOTOS_INTO_STATE: {
+            const superState = {
+                ...state,
+                photos: {
+                    ...state.photos,
+                    small: action.photoSmall,
+                    large: action.photoLarge
+                }
             };
             return superState;
         }
