@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import defaultPhoto from "../../../assets/img/default_photo.png"
 
 const SomeoneElseProfilePage = (props) => {
@@ -24,7 +23,7 @@ const SomeoneElseProfilePage = (props) => {
                 <p className="profile__contacts-title">My Contacts:</p>{" "}
                 <ul className="profile__contacts-ul">
                     { props.contactsKeysArray.map(contactKey => {
-                        return <li key={contactKey}>{contactKey + ": "} { props.contacts[contactKey] ? <a href={props.contacts[contactKey]} target="_blank">{ props.contacts[contactKey] }</a> : "No " + contactKey + " Information" } </li>
+                        return <li key={contactKey}>{contactKey + ": "} { props.contacts[contactKey] ? <a href={ props.contacts[contactKey] } target="_blank">{ props.contacts[contactKey] }</a> : "No " + contactKey + " Information" } </li>
                     }) }
                 </ul>
             </div>

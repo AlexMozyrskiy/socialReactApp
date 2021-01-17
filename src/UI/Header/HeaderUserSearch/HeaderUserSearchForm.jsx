@@ -1,15 +1,19 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import ButtonPreloader from "../../common/ButtonPreloader";
 
 const HeaderUserSearchForm = (props) => {
     return (
         <form className="header__search">
-            <input type="text" className="header__search-field" placeholder="Search friend by id" />
-            <button className="button button_header-search">Search</button>
-            <div className="loader loader_header-searchByIdButton displaynone">
-                <div id="fountainG_1" className="fountainG"></div>
-                <div id="fountainG_2" className="fountainG"></div>
-                <div id="fountainG_3" className="fountainG"></div>
-            </div>
+                <input type="text" className="header__search-field" placeholder="Search friend by id"
+                value={props.headerSearchFormValue}
+                onChange={(e) => props.changeheaderSearchFormValue(e.target.value)}
+                onKeyPress={ (e) => props.keyBoardKeyUp(e.key, props.headerSearchFormValue) } />
+
+            <NavLink to={"/profile/" + props.headerSearchFormValue} className="button button_header-search"
+                onClick={ () => props.goToUserPage(props.headerSearchFormValue) }>Search</NavLink>
+            
+            <ButtonPreloader displayNone={true} dotsCount={3} classes={["loader", "loader_header-searchByIdButton"]} />
         </form>
     );
 }
