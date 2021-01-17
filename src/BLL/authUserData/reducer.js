@@ -1,4 +1,8 @@
-import { LOGGED_IN_OUT_USER_DATA, SET_USER_STATUS_INTO_STATE, SET_USER_INFO_INTO_STATE, SET_USER_PHOTOS_INTO_STATE } from "./actionTypes";
+import {
+    LOGGED_IN_OUT_USER_DATA, SET_USER_STATUS_INTO_STATE,
+    SET_USER_INFO_INTO_STATE, SET_USER_PHOTOS_INTO_STATE,
+    TOOGLE_LOOKING_FOR_A_JOB
+} from "./actionTypes";
 
 const initialState = {
     isLoggedIn: false,
@@ -43,6 +47,14 @@ const authUserDataReducer = (state = initialState, action) => {
             const superState = {
                 ...state,
                 status: action.status
+            };
+            return superState;
+        }
+
+        case TOOGLE_LOOKING_FOR_A_JOB: {
+            const superState = {
+                ...state,
+                lookingForAJob: action.lookingForAJob
             };
             return superState;
         }

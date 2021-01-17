@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useForm } from "react-hook-form";
 import OwnerProfilePageForm from "./OwnerProfilePageForm";
 import * as selectors from "../../../../BLL/authUserData/selectors";
 import { getOwnerProfilePageIsSaveChangesButtonClickedSelector } from "../../../../BLL/ownerProfilePage/selectors";
@@ -11,56 +10,66 @@ const OwnerProfilePageFormContainer = (props) => {
 
     const contactsKeysArray = Object.keys(props.contacts);      // записываем в массив ключи объекта props.contacts, чтобы потом удобнос ними работать  через mapcontactsKeysArray
 
-    const { register, handleSubmit, errors } = useForm({
-        defaultValues: {
-            status: props.status ? props.status : null,
-            fullName: props.fullName ? props.fullName : null,
-            aboutMe: props.aboutMe ? props.aboutMe : null,
-            lookingForAJobDescription: props.lookingForAJobDescription ? props.lookingForAJobDescription : null,
-            facebook: props.contacts.facebook ? props.contacts.facebook : null,
-            github: props.contacts.github ? props.contacts.github : null,
-            instagram: props.contacts.instagram ? props.contacts.instagram : null,
-            mainLink: props.contacts.mainLink ? props.contacts.mainLink : null,
-            twitter: props.contacts.twitter ? props.contacts.twitter : null,
-            vk: props.contacts.vk ? props.contacts.vk : null,
-            website: props.contacts.website ? props.contacts.website : null,
-            youtube: props.contacts.youtube ? props.contacts.youtube : null
-        }
-    });
-
     function onSubmit(formData) {
         // тут действия которые выполнятся при сабмите формы
+
+        // ------------- Status -------------------
+        const prevStatus = props.status;
+        const newStatus = formData.status;
+        if (!newStatus) {      // если пустой статус
+            formData.status = null;
+        }
+
+        if (prevStatus !== newStatus && formData.status) {                   // если статус не такой же как был обновим его
+            props.updateOwnerStatusThunkCreator(formData.status);
+        }
+        // ------------- / Status -----------------
+
+
+        // --------------- Info -------------------
+        if (!("fullName" in formData)) formData.fullName = props.fullName;
+        if (!("aboutMe" in formData)) formData.aboutMe = props.aboutMe;
+        if (!("lookingForAJob" in formData)) formData.lookingForAJob = props.lookingForAJob;
+        if (!("lookingForAJobDescription" in formData)) formData.lookingForAJobDescription = props.lookingForAJobDescription;
+
+        // --------------- / Info -----------------
+
+        // ------------- Определим объект для санки ----------------
         const ownerInfoObj = {
-            status: formData.status,
-            fullName: formData.fullName,
             aboutMe: formData.aboutMe,
             lookingForAJob: formData.lookingForAJob,
             lookingForAJobDescription: formData.lookingForAJobDescription,
+            fullName: formData.fullName,
             contacts: {
-                facebook: formData.facebook ? formData.facebook : null,
-                github: formData.github ? formData.github : null,
-                instagram: formData.instagram ? formData.instagram : null,
-                mainLink: formData.mainLink ? formData.mainLink : null,
-                twitter: formData.twitter ? formData.twitter : null,
-                vk: formData.vk ? formData.vk : null,
-                website: formData.website ? formData.website : null,
-                youtube: formData.youtube ? formData.youtube : null
+
             },
             photos: {
-                small: props.smallPhoto ? props.smallPhoto : null,
-                large: props.largePhoto ? props.largePhoto : null
+                small: props.smallPhoto,
+                large: props.largePhoto
             }
         }
+        // ------------- / Определим объект для санки --------------
 
-        console.log(formData);
-        console.log(ownerInfoObj);
-
-        if(ownerInfoObj.status != props.status) {
-            props.updateOwnerStatusThunkCreator(ownerInfoObj.status)
+        // --------------- Contacts -------------------
+        for (let key in props.contacts) {
+            if (!(key in formData)) {
+                ownerInfoObj.contacts[key] = props.contacts[key];
+            } else {
+                ownerInfoObj.contacts[key] = formData[key]
+            }
         }
+        // --------------- / Contacts -----------------
+        console.log(ownerInfoObj);
 
         props.updateOwnerInfoThunkCreator(ownerInfoObj);
     }
+
+    function toogleCheckBoxlookingForAJob(isLooking) {
+        console.log(isLooking);
+        props.toogleLoockingForAJobInState(isLooking);
+    }
+
+
 
     if (props.isLoggedIn && props.userIdFromUrl == props.ownerId) {
         return (
@@ -68,9 +77,7 @@ const OwnerProfilePageFormContainer = (props) => {
                 {...props}
                 contactsKeysArray={contactsKeysArray}
                 onSubmit={onSubmit}
-                register={register}
-                handleSubmit={handleSubmit}
-                errors={errors}
+                toogleCheckBoxlookingForAJob={toogleCheckBoxlookingForAJob}
             />
         );
     }
