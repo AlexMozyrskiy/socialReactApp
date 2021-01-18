@@ -11,6 +11,8 @@ let OwnerProfilePageForm = (props) => {
                 <p className="profile__item-title">My Status:</p>{" "}
                 <InputReactHookForm
                     register={props.register}
+                    CSSclasses={["login__form-input"]}
+                    type="text"
                     name="status"
                     errors={props.errors.status}
                     minLength={3}
@@ -22,6 +24,8 @@ let OwnerProfilePageForm = (props) => {
                 <p className="profile__item-title">My Name:</p>{" "}
                 <InputReactHookForm
                     register={props.register}
+                    CSSclasses={["login__form-input"]}
+                    type="text"
                     name="fullName"
                     errors={props.errors.fullName}
                     minLength={3}
@@ -33,6 +37,8 @@ let OwnerProfilePageForm = (props) => {
                 <p className="profile__item-title">About Me:</p>{" "}
                 <InputReactHookForm
                     register={props.register}
+                    CSSclasses={["login__form-input"]}
+                    type="text"
                     name="aboutMe"
                     errors={props.errors.aboutMe}
                     minLength={3}
@@ -48,6 +54,8 @@ let OwnerProfilePageForm = (props) => {
                 <p className="profile__item-title">Job Description:</p>{" "}
                 <InputReactHookForm
                     register={props.register}
+                    CSSclasses={["login__form-input"]}
+                    type="text"
                     name="lookingForAJobDescription"
                     errors={props.errors.lookingForAJobDescription}
                     minLength={3}

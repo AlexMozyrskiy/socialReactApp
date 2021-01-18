@@ -3,6 +3,7 @@ import cn from "classnames";
 
 /* Пример применения компонента:
     <InputReactHookForm
+        CSSclasses={["login__form-input"]}          // - массив с перечислением классов CSS
         register={props.register}
         name="lookingForAJobDescription"
         errors={props.errors.lookingForAJobDescription}
@@ -16,10 +17,10 @@ const InputReactHookForm = (props) => {
     return (
         <>
             <input
-                className={cn({ "profile__item": !props.errors }, { "error__input": props.errors })}
+                className={cn({ "profile__item": !props.errors }, { "error__input": props.errors }, [...props.CSSclasses])}
                 ref={props.register({ minLength: props.minLength, required: props.required })}
                 name={props.name}
-                type="text"
+                type={props.type}
                 placeholder={props.placeholder}
             />
 
