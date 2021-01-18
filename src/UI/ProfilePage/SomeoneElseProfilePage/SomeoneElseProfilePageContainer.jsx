@@ -3,12 +3,14 @@ import SomeoneElseProfilePage from "./SomeoneElseProfilePage";
 import { notOwnerUserProfileThunkCreator } from "../../../BLL/notOwnerUserData/thunkCreators";
 import { connect } from "react-redux";
 import * as selectors from "../../../BLL/notOwnerUserData/selectors";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
 
 const SomeoneElseProfilePageContainer = (props) => {
 
     useEffect( () => {
-        props.notOwnerUserProfileThunkCreator(props.userIdFromUrl);
-    }, [props.userIdFromUrl] );            // userIdFromUrl пришло из ProfilePageContainer из адресной строки
+        props.notOwnerUserProfileThunkCreator(props.match.params.userId);
+    }, [props.match.params.userId] );
 
     const contactsKeysArray = Object.keys(props.contacts);
 
@@ -47,4 +49,7 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SomeoneElseProfilePageContainer);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter
+)(SomeoneElseProfilePageContainer);

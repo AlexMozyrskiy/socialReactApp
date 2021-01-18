@@ -3,8 +3,11 @@ import {
     setNotOwnerUserStatusIntoState,
     setNotOwnerUserInfoIntoState
 } from "./actionCreators";
+import { setIsHeaderSearchButtonClicked } from "../header/actionCreators";
 
 export const notOwnerUserProfileThunkCreator = (id) => async (dispatch) => {
+    dispatch(setIsHeaderSearchButtonClicked(true));
+
     const userInfo = await userInfoAPI.getUserInfo(id);
 
     if (userInfo) {
@@ -15,4 +18,5 @@ export const notOwnerUserProfileThunkCreator = (id) => async (dispatch) => {
             dispatch(setNotOwnerUserStatusIntoState(status));
         }
     }
+    dispatch(setIsHeaderSearchButtonClicked(false));
 }

@@ -36,5 +36,6 @@ export const logOutThunkCreator = (/* email, password, rememberMe = false, captc
         dispatch(setIsHeaderLoginButtonClicked(false));
     } else {
         alert("Some Error");
+        dispatch(setIsHeaderLoginButtonClicked(false));
     }
 }

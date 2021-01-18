@@ -6,6 +6,8 @@ import * as selectors from "../../../../BLL/authUserData/selectors";
 import { getOwnerProfilePageIsSaveChangesButtonClickedSelector } from "../../../../BLL/ownerProfilePage/selectors";
 import { updateOwnerStatusThunkCreator, updateOwnerInfoThunkCreator } from "../../../../BLL/ownerProfilePage/thunkCreators";
 import { toogleLoockingForAJobInState } from "../../../../BLL/authUserData/actionCreators";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
 
 const OwnerProfilePageFormContainer = (props) => {
 
@@ -59,7 +61,9 @@ const OwnerProfilePageFormContainer = (props) => {
         props.updateOwnerInfoThunkCreator(ownerInfoObj);
     }
 
-    if (props.isLoggedIn && props.userIdFromUrl == props.ownerId) {
+    // debugger
+    // props.userIdFromUrl = Number(props.userIdFromUrl);
+    if (props.isLoggedIn && props.match.params.userId === props.ownerId) {
         return (
             <OwnerProfilePageForm
                 {...props}
@@ -97,4 +101,7 @@ const mapDispatchToProps = {
     toogleLoockingForAJobInState
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OwnerProfilePageFormContainer);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter
+)(OwnerProfilePageFormContainer);

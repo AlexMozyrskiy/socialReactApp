@@ -1,19 +1,20 @@
 import React from "react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import HeaderUserSearchForm from "./HeaderUserSearchForm";
 import { notOwnerUserProfileThunkCreator } from "../../../BLL/notOwnerUserData/thunkCreators";
+import { getIsSearchButtonClickedSelector } from "../../../BLL/header/selectors";
 import { connect } from "react-redux";
 
 const HeaderUserSearchFormContainer = (props) => {
     const { register, handleSubmit, errors } = useForm();
-
-    // const headerSearchFormValue = null;
+    const history = useHistory();                           // добавляет новый УРЛ и компонент перересовывается правильно
 
     const onSubmit = (formData) => {        // в formData все данные из заполненой формы
+        formData.id = Number(formData.id)
         // действия с заполненными данными, например санки
-        console.log(formData.id);
-        window.history.pushState(null, null, "/profile/" + formData.id);
+        // console.log(formData.id);
+        history.push("/profile/" + formData.id);              // добавляет новый УРЛ и компонент перересовывается правильно
         props.notOwnerUserProfileThunkCreator(formData.id);
     }
 
@@ -32,13 +33,14 @@ const HeaderUserSearchFormContainer = (props) => {
         errors={errors.id}
         onSubmit={onSubmit}
         isIntegerValidation={isIntegerValidation}
+        isSearchButtonClicked={props.isSearchButtonClicked}
     />
 }
 
 
 const mapStateToProps = (state) => {
     return {
-
+        isSearchButtonClicked: getIsSearchButtonClickedSelector(state)
     }
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import ButtonPreloader from "../../common/ButtonPreloader";
+import cn from "classnames";
 
 const HeaderUserSearchForm = (props) => {
     return (
@@ -20,9 +20,9 @@ const HeaderUserSearchForm = (props) => {
 
             {/* <NavLink to={"/profile/" + props.headerSearchFormValue} className="button button_header-search"
                 >Search</NavLink> */}
-            <button className="button button_header-search">Search</button>
+            <button className={cn("button", "button_header-search", {"displaynone": props.isSearchButtonClicked})}>Search</button>
 
-            <ButtonPreloader displayNone={true} dotsCount={3} classes={["loader", "loader_header-searchByIdButton"]} />
+            <ButtonPreloader displayNone={!props.isSearchButtonClicked} dotsCount={3} classes={["loader", "loader_header-searchByIdButton"]} />
         </form>
     );
 }

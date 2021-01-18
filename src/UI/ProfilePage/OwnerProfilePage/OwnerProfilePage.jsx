@@ -8,7 +8,7 @@ const OwnerProfilePage = (props) => {
     return (
         <div className="grid-wrapper__content profile">
 
-            <OwnerProfilePageFormContainer userIdFromUrl={props.userIdFromUrl} />
+            <OwnerProfilePageFormContainer />
             
             <OwnerProfilePagePhotoContainer />
 
