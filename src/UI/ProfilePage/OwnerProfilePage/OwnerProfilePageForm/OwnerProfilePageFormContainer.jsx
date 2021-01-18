@@ -52,9 +52,6 @@ const OwnerProfilePageFormContainer = (props) => {
             }
         }
 
-        console.log(formData);
-        console.log(ownerInfoObj);
-
         if(ownerInfoObj.status != props.status) {
             props.updateOwnerStatusThunkCreator(ownerInfoObj.status)
         }

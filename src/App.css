@@ -177,6 +177,11 @@ template {
 	padding: 6px 12px 0 12px;
 	outline: none;
 }
+.error_header-searchform {
+	position: absolute;
+	top: 40px;
+	left: 0;
+}
 .grid-wrapper {
 	display: grid;
 	grid-template-areas: "sidebar-left content";
@@ -434,6 +439,7 @@ template {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	position: relative;
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
