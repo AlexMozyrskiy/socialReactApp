@@ -31,11 +31,11 @@ const OwnerProfilePageFormContainer = (props) => {
     function onSubmit(formData) {
         // тут действия которые выполнятся при сабмите формы
         const ownerInfoObj = {
-            status: formData.status,
-            fullName: formData.fullName,
-            aboutMe: formData.aboutMe,
-            lookingForAJob: formData.lookingForAJob,
-            lookingForAJobDescription: formData.lookingForAJobDescription,
+            status: formData.status ? formData.status : null,
+            fullName: formData.fullName ? formData.fullName : null,
+            aboutMe: formData.aboutMe ? formData.aboutMe : null,
+            lookingForAJob: formData.lookingForAJob ? formData.lookingForAJob : null,
+            lookingForAJobDescription: formData.lookingForAJobDescription ? formData.lookingForAJobDescription : null,
             contacts: {
                 facebook: formData.facebook ? formData.facebook : null,
                 github: formData.github ? formData.github : null,

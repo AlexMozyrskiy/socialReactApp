@@ -161,6 +161,22 @@ template {
 	font-weight: 700;
 	font-style: normal
 }
+.error__message {
+	color: #900020;
+	font-weight: 700;
+}
+.error__input {
+	background: #fff;
+	border: 3px solid #900020;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-radius: 4px;
+	color: #939598;
+	width: 60%!important;
+	height: 24px;
+	padding: 6px 12px 0 12px;
+	outline: none;
+}
 .grid-wrapper {
 	display: grid;
 	grid-template-areas: "sidebar-left content";
@@ -553,7 +569,7 @@ template {
 }
 .profile__item {
 	background: #fff;
-	/* border: 1px solid #f1f2f2; */
+	border: 2px solid #f1f2f2;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	border-radius: 4px;
@@ -561,6 +577,7 @@ template {
 	width: 60%!important;
 	height: 24px;
 	padding: 6px 12px 0 12px;
+	outline: none;
 }
 .profile__item-checkbox {
 	width: 5%!important;
@@ -1058,3 +1075,181 @@ body {
 	}
 }
 /* / анимация загрузки приложения */
+
+
+/* Анимация ошибки */
+:root {
+	--animate-duration: 1s;
+	--animate-delay: 1s;
+	--animate-repeat: 1;
+  }
+.animate__animated {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-duration: var(--animate-duration);
+	animation-duration: var(--animate-duration);
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+  }
+
+  @-webkit-keyframes lightSpeedInRight {
+	from {
+	  -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+	  transform: translate3d(100%, 0, 0) skewX(-30deg);
+	  opacity: 0;
+	}
+  
+	60% {
+	  -webkit-transform: skewX(20deg);
+	  transform: skewX(20deg);
+	  opacity: 1;
+	}
+  
+	80% {
+	  -webkit-transform: skewX(-5deg);
+	  transform: skewX(-5deg);
+	}
+  
+	to {
+	  -webkit-transform: translate3d(0, 0, 0);
+	  transform: translate3d(0, 0, 0);
+	}
+  }
+  @keyframes lightSpeedInRight {
+	from {
+	  -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+	  transform: translate3d(100%, 0, 0) skewX(-30deg);
+	  opacity: 0;
+	}
+  
+	60% {
+	  -webkit-transform: skewX(20deg);
+	  transform: skewX(20deg);
+	  opacity: 1;
+	}
+  
+	80% {
+	  -webkit-transform: skewX(-5deg);
+	  transform: skewX(-5deg);
+	}
+  
+	to {
+	  -webkit-transform: translate3d(0, 0, 0);
+	  transform: translate3d(0, 0, 0);
+	}
+  }
+  .animate__lightSpeedInRight {
+	-webkit-animation-name: lightSpeedInRight;
+	animation-name: lightSpeedInRight;
+	-webkit-animation-timing-function: ease-out;
+	animation-timing-function: ease-out;
+  }
+  @-webkit-keyframes lightSpeedInLeft {
+	from {
+	  -webkit-transform: translate3d(-100%, 0, 0) skewX(30deg);
+	  transform: translate3d(-100%, 0, 0) skewX(30deg);
+	  opacity: 0;
+	}
+  
+	60% {
+	  -webkit-transform: skewX(-20deg);
+	  transform: skewX(-20deg);
+	  opacity: 1;
+	}
+  
+	80% {
+	  -webkit-transform: skewX(5deg);
+	  transform: skewX(5deg);
+	}
+  
+	to {
+	  -webkit-transform: translate3d(0, 0, 0);
+	  transform: translate3d(0, 0, 0);
+	}
+  }
+  @keyframes lightSpeedInLeft {
+	from {
+	  -webkit-transform: translate3d(-100%, 0, 0) skewX(30deg);
+	  transform: translate3d(-100%, 0, 0) skewX(30deg);
+	  opacity: 0;
+	}
+  
+	60% {
+	  -webkit-transform: skewX(-20deg);
+	  transform: skewX(-20deg);
+	  opacity: 1;
+	}
+  
+	80% {
+	  -webkit-transform: skewX(5deg);
+	  transform: skewX(5deg);
+	}
+  
+	to {
+	  -webkit-transform: translate3d(0, 0, 0);
+	  transform: translate3d(0, 0, 0);
+	}
+  }
+  .animate__lightSpeedInLeft {
+	-webkit-animation-name: lightSpeedInLeft;
+	animation-name: lightSpeedInLeft;
+	-webkit-animation-timing-function: ease-out;
+	animation-timing-function: ease-out;
+  }
+  @-webkit-keyframes lightSpeedOutRight {
+	from {
+	  opacity: 1;
+	}
+  
+	to {
+	  -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
+	  transform: translate3d(100%, 0, 0) skewX(30deg);
+	  opacity: 0;
+	}
+  }
+  @keyframes lightSpeedOutRight {
+	from {
+	  opacity: 1;
+	}
+  
+	to {
+	  -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
+	  transform: translate3d(100%, 0, 0) skewX(30deg);
+	  opacity: 0;
+	}
+  }
+  .animate__lightSpeedOutRight {
+	-webkit-animation-name: lightSpeedOutRight;
+	animation-name: lightSpeedOutRight;
+	-webkit-animation-timing-function: ease-in;
+	animation-timing-function: ease-in;
+  }
+  @-webkit-keyframes lightSpeedOutLeft {
+	from {
+	  opacity: 1;
+	}
+  
+	to {
+	  -webkit-transform: translate3d(-100%, 0, 0) skewX(-30deg);
+	  transform: translate3d(-100%, 0, 0) skewX(-30deg);
+	  opacity: 0;
+	}
+  }
+  @keyframes lightSpeedOutLeft {
+	from {
+	  opacity: 1;
+	}
+  
+	to {
+	  -webkit-transform: translate3d(-100%, 0, 0) skewX(-30deg);
+	  transform: translate3d(-100%, 0, 0) skewX(-30deg);
+	  opacity: 0;
+	}
+  }
+  .animate__lightSpeedOutLeft {
+	-webkit-animation-name: lightSpeedOutLeft;
+	animation-name: lightSpeedOutLeft;
+	-webkit-animation-timing-function: ease-in;
+	animation-timing-function: ease-in;
+  }
+/* / Анимация ошибки */
