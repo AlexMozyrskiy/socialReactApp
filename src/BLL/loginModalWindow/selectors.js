@@ -13,3 +13,7 @@ export const getIsCaptchActiveSelector =  (state) => {
 export const getCaptchaURLSelector =  (state) => {
     return state.loginModalWindow.captchaURL;
 }
+
+export const getResponseErrorTextSelector =  (state) => {
+    return state.loginModalWindow.responseErrorText;
+}

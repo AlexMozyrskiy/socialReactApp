@@ -1,13 +1,14 @@
 import {
     IS_MODAL_LOGIN_WINDOW_ACTIVE, IS_MODAL_LOGIN_WINDOW_BUTTON_CLICKED,
-    SET_CAPTCHA_INTO_STATE
+    SET_CAPTCHA_INTO_STATE, SET_RESPONSE_ERROR_TEXT_INTO_STATE
 } from "./actionTypes";
 
 let initialState = {
     isModalLoginWindowAcive: false,
     isCapthaActive: false,
     captchaURL: null,
-    isLoginButtonClicked: false
+    isLoginButtonClicked: false,
+    responseErrorText: null
 };
 
 const loginModalWindowReducer = (state = initialState, action) => {
@@ -24,6 +25,14 @@ const loginModalWindowReducer = (state = initialState, action) => {
             const superState = {
                 ...state,
                 isLoginButtonClicked: action.isLoginButtonClicked
+            };
+            return superState;
+        }
+
+        case SET_RESPONSE_ERROR_TEXT_INTO_STATE: {
+            const superState = {
+                ...state,
+                responseErrorText: action.responseErrorText
             };
             return superState;
         }

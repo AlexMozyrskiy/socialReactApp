@@ -10,6 +10,7 @@ import cn from "classnames";
         minLength={3}
         required={true}
         placeholder={"Enter Your Job Description"}
+        onChangeOwnFunction={props.deleteErrorMessage}
     />
 */
 
@@ -22,6 +23,7 @@ const InputReactHookForm = (props) => {
                 name={props.name}
                 type={props.type}
                 placeholder={props.placeholder}
+                onChange={props.onChangeOwnFunction}
             />
 
             {/* сообщения об ошибках */}

@@ -5,8 +5,9 @@ import LoginModalWindowForm from "./LoginModalWindowForm";
 import { logInThunkCreator } from "../../../BLL/loginModalWindow/thunkCreators"
 import {
     getIsLoginButtonClickedSelector, getIsCaptchActiveSelector,
-    getCaptchaURLSelector
+    getCaptchaURLSelector, getResponseErrorTextSelector
 } from "../../../BLL/loginModalWindow/selectors";
+import { setResponseErrorTextIntoState } from "../../../BLL/loginModalWindow/actionCreators";
 
 const LoginModalWindowFormContainer = (props) => {
 
@@ -19,15 +20,23 @@ const LoginModalWindowFormContainer = (props) => {
         // console.log(formData);
     }
 
+    function deleteErrorMessage() {             // эта функция вызывсается когда юзер печатает что-либо в полях логин или пароль
+        if(props.responseErrorTextFromServer) {       // если в стейте была ошибка от сервера, то при начал5е набора она из сейта и из UI сотрется
+            props.setResponseErrorTextIntoState(null);
+        }
+    }
+
     return (
         <LoginModalWindowForm
             onSubmit={onSubmit}
             register={register}
             handleSubmit={handleSubmit}
+            deleteErrorMessage={deleteErrorMessage}
             errors={errors}
             isLoginButtonClicked={props.isLoginButtonClicked}
             isCapthaActive={props.isCapthaActive}
             captchaURL={props.captchaURL}
+            responseErrorTextFromServer={props.responseErrorTextFromServer}
         />
     );
 }
@@ -37,8 +46,9 @@ const mapStateToProps = (state) => {
     return {
         isLoginButtonClicked: getIsLoginButtonClickedSelector(state),
         isCapthaActive: getIsCaptchActiveSelector(state),
-        captchaURL: getCaptchaURLSelector(state)
+        captchaURL: getCaptchaURLSelector(state),
+        responseErrorTextFromServer: getResponseErrorTextSelector(state)
     }
 }
 
-export default connect(mapStateToProps, { logInThunkCreator })(LoginModalWindowFormContainer);
+export default connect(mapStateToProps, { logInThunkCreator, setResponseErrorTextIntoState })(LoginModalWindowFormContainer);

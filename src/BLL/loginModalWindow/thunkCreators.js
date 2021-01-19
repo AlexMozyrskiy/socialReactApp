@@ -6,6 +6,7 @@ import { setIsHeaderLoginButtonClicked } from "../../BLL/header/actionCreators";
 import { loginAPI } from "./../../DAL/login/api";
 import { isAuthThunkCreator } from "./../authUserData/thunkCreators";
 import { initializedApp } from "./../initializedApp/actionCreators";
+import { setResponseErrorTextIntoState } from "./../loginModalWindow/actionCreators";
 
 
 
@@ -25,6 +26,9 @@ export const logInThunkCreator = (email, password, rememberMe = false, captcha =
             .then(captchaURL => {
                 dispatch(setCaptchaIntoState(true, captchaURL));
             })
+    } else if(data.resultCode === 1) {
+        const responseErrorText =  data.messages[0];
+        dispatch(setResponseErrorTextIntoState(responseErrorText));
     } else {
         alert("Some Error");
     }
