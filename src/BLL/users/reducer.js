@@ -1,7 +1,8 @@
 import {
     SET_USERS_ARRAY_TOTAL_COUNT_ERROR_INTO_STATE, SET_CURRENT_PAGE_INTO_STATE,
     IS_PRELOADER_ACTIVE_INTO_STATE, TOOGLE_FOLLOW_USER,
-    SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE, UN_SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE
+    SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE, UN_SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE,
+    TOOGLE_RUN_USE_EFFECT
 } from "./actionTypes";
 
 const initialState = {
@@ -23,8 +24,11 @@ const initialState = {
     currentPage: 1,
     totalCount: 0,
     error: null,
+    isFirstUsersLoaded: false,   // Если первые юзеры загружены
 
-    clickedButtonsIds: [1, 2]          // массив ид по которым кликнули чтобы подписаться отписаться, чтобы показывать лоадер вместо кнопки
+    runUseEffectInUsersPageContainer: true,     // введено для того чтобы: при первом рендере компонента useEffect выполняется всегда, даже если переменная пекреданная ему не поменялась. Чтобы useEffect не запускался каждый раз при рендере(переходе например с другой страницы) вводим условие при котором он булдет запускаться
+
+    clickedButtonsIds: []          // массив ид по которым кликнули чтобы подписаться отписаться, чтобы показывать лоадер вместо кнопки
 };
 
 const usersReducers = (state = initialState, action) => {
@@ -32,9 +36,10 @@ const usersReducers = (state = initialState, action) => {
         case SET_USERS_ARRAY_TOTAL_COUNT_ERROR_INTO_STATE: {            // меняем в стейте массив юзеров(items), totalCount, error
             const superState = {
                 ...state,
-                items: [...action.usersArray],
+                items: state.isFirstUsersLoaded ? [...state.items, ...action.usersArray] : [...action.usersArray], // Если первые юзеры загружены то будем добавлять юзеров в стейт, в противном случае заменим initialState.items, который итзначально содержит один айтем с null, на массив с юзерами полученными в первый раз
                 totalCount: action.totalCount,
-                error: action.error
+                error: action.error,
+                isFirstUsersLoaded: true
             };
             return superState;
         }
@@ -43,6 +48,14 @@ const usersReducers = (state = initialState, action) => {
             const superState = {
                 ...state,
                 currentPage: action.currentPage
+            };
+            return superState;
+        }
+
+        case TOOGLE_RUN_USE_EFFECT: {
+            const superState = {
+                ...state,
+                runUseEffectInUsersPageContainer: action.booleanVariable
             };
             return superState;
         }

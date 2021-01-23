@@ -1,10 +1,11 @@
 import { usersAPI } from "../../DAL/users/api";
 import {
     setUsersArray, setCurrentPage, setIsPreloaderActive, followUser,
-    setClickedButtonId, unSetClickedButtonId
+    setClickedButtonId, unSetClickedButtonId, toogleRunUseEffect
 } from "./actionCreators";
 
-export const getUsersThunkCreator = (currentPage = 1, usersPerPage) => async (dispatch) => {
+export const getUsersThunkCreator = (currentPage = 1, usersPerPage = 10) => async (dispatch) => {
+    debugger
     dispatch(setIsPreloaderActive(true));
 
     const data = await usersAPI.getUsers(currentPage, usersPerPage);
@@ -15,6 +16,8 @@ export const getUsersThunkCreator = (currentPage = 1, usersPerPage) => async (di
     }
 
     dispatch(setIsPreloaderActive(false));
+
+    dispatch(toogleRunUseEffect(false));
 }
 
 export const followUserThunkCreator = (userId, isFollow) => async (dispatch) => {

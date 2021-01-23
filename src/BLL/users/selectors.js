@@ -21,3 +21,7 @@ export const getIsPreloaderActiveSelector =  (state) => {
 export const getIdClickedFollowButtonsArray =  (state) => {
     return state.users.clickedButtonsIds;
 }
+
+export const getRunUseEffect =  (state) => {
+    return state.users.runUseEffectInUsersPageContainer;
+}

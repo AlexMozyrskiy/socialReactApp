@@ -3,21 +3,30 @@ import { connect } from "react-redux";
 import {
     getUsersArraySelector, getTotalUsersCountSelector,
     getUsersCurrentPageSelector, getIsPreloaderActiveSelector,
-    getIdClickedFollowButtonsArray
+    getIdClickedFollowButtonsArray, getRunUseEffect
 } from "../../BLL/users/selectors";
 import { getIsLoggedInSelector } from "../../BLL/authUserData/selectors";
+import { setCurrentPage, toogleRunUseEffect } from "../../BLL/users/actionCreators";
 import { getUsersThunkCreator, followUserThunkCreator } from "../../BLL/users/thunkCreators";
 import UsersPage from "./UsersPage";
 
 const UsersPageContainer = (props) => {
 
     useEffect(() => {
-        props.getUsersThunkCreator(props.currentPage, 10);
-    }, [props.currentPage])
+        if (props.runUseEffect) {                               // если пришли с прошлой странице при первом рендере useEffect запустится в любом случае, по этому вводим доп свойсто в стейт
+            props.getUsersThunkCreator(props.currentPage, 5);
+        }
+    }, [props.currentPage]);
 
     function followUnfollowUser(id, isFollow) {
         props.followUserThunkCreator(id, isFollow);
         // console.log(id, isFollow);
+    }
+
+    function loadNextPartOfUsers(nextPage) {
+        props.toogleRunUseEffect(true);
+        props.setCurrentPage(nextPage);
+        // props.toogleRunUseEffect(false);
     }
 
     return <UsersPage
@@ -26,6 +35,8 @@ const UsersPageContainer = (props) => {
         followUnfollowUser={followUnfollowUser}
         isLoggedIn={props.isLoggedIn}
         clickedFollowButtonsArray={props.clickedFollowButtonsArray}
+        currentPage={props.currentPage}
+        loadNextPartOfUsers={loadNextPartOfUsers}
     />
 }
 
@@ -37,13 +48,16 @@ const mapStateToProps = (state) => {
         currentPage: getUsersCurrentPageSelector(state),
         isPreloaderActive: getIsPreloaderActiveSelector(state),
         isLoggedIn: getIsLoggedInSelector(state),
-        clickedFollowButtonsArray: getIdClickedFollowButtonsArray(state)
+        clickedFollowButtonsArray: getIdClickedFollowButtonsArray(state),
+        runUseEffect: getRunUseEffect(state)
     }
 }
 
 const mapDispatchToProps = {
     getUsersThunkCreator,
-    followUserThunkCreator
+    followUserThunkCreator,
+    setCurrentPage,
+    toogleRunUseEffect
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersPageContainer);
