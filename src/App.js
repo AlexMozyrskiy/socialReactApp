@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import HeaderContainer from "./UI/Header/HeaderContainer";
 import './App.css';
-import UsersPage from "./UI/UsersPage/UsersPage";
+import UsersPageContainer from "./UI/UsersPage/UsersPageContainer";
 import NotFoundPage from "./UI/NotFoundPage";
 import ProfilePageContainer from "./UI/ProfilePage/ProfilePageContainer";
 import MessagesPageContainer from './UI/MessagesPage/MessagesPageContainer';
@@ -45,7 +45,7 @@ const App = (props) => {
               : <Route exact path="/" render={() => <Redirect to={"profile/" + 2} />} />
             }
             
-            <Route path='/users' render={() => <UsersPage />} />
+            <Route path='/users' render={() => <UsersPageContainer />} />
             <Route path='/profile/:userId?' render={() => <ProfilePageContainer />} />
             <Route path='/messages' render={() => <MessagesPageContainer />} />
             <Route path='*' render={() => <NotFoundPage />} />

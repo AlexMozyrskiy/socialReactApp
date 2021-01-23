@@ -8,6 +8,7 @@ import headerReducer from "../header/reducer";
 import initializedAppReducer from "../initializedApp/reducer";
 import notOwnerUserDataReducer from "../notOwnerUserData/reducer";
 import ownerProfilePageReducer from "../ownerProfilePage/reducer";
+import usersReducers from "../users/reducer";
 
 
 let reducers = combineReducers({
@@ -17,6 +18,7 @@ let reducers = combineReducers({
     initializedApp: initializedAppReducer,
     notOwnerUserData: notOwnerUserDataReducer,
     ownerProfilePage: ownerProfilePageReducer,
+    users: usersReducers,
     form: formReducer
 });
 

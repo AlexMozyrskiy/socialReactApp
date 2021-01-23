@@ -1,6 +1,11 @@
 import React from "react";
 import cn from "classnames";
 
+
+/* Пример вызова:
+    <ButtonPreloader displayNone={!props.isSaveChangesButtonClicked} dotsCount={10} classes={["loader"]} />
+*/
+
 /* props - объект:
 props = {
     displayNone: true,    // boolean - показывать ли прелоадер

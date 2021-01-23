@@ -1,24 +1,33 @@
 import React from "react";
+import AppPreloader from "../common/AppPreloader";
 import UsersPageSingleUser from "./UsersPageSingleUser/UsersPageSingleUser";
 
-const UsersPage = () => {
+const UsersPage = (props) => {
     return (
-        <div class="grid-wrapper__content users">
+        <div className="grid-wrapper__content users">
+            {
+                props.isPreloaderActive
+                    ? <AppPreloader />
+                    : <div className="users__users">
 
-            <div class="users__users">
+                        {
+                            props.usersArray.map(singleUser => {
+                                return (
+                                    <UsersPageSingleUser
+                                        key={singleUser.id}
+                                        singleUser={singleUser}
+                                        followUnfollowUser={props.followUnfollowUser}
+                                        isLoggedIn={props.isLoggedIn}
+                                        clickedFollowButtonsArray={props.clickedFollowButtonsArray}
+                                    />
+                                );
+                            })
+                        }
 
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
-                <UsersPageSingleUser />
+                    </div>
+            }
 
-            </div>
+
 
         </div>
     );
