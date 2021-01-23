@@ -8,6 +8,7 @@ import ProfilePageContainer from "./UI/ProfilePage/ProfilePageContainer";
 import MessagesPageContainer from './UI/MessagesPage/MessagesPageContainer';
 import LoginModalWindowContainer from "./UI/LoginModalWindow/LoginModalWindowContainer";
 import SideBarContainer from "./UI/SideBar/SideBarContainer";
+import Footer from "./UI/Footer/Footer";
 import { getIsAppInitializedSelector } from "./BLL/initializedApp/selectors";
 import { initializedAppThunkCreator } from "./BLL/initializedApp/thunkCreators";
 import { getIsLoggedInSelector, getOwnerIdSelector } from "./BLL/authUserData/selectors";
@@ -55,6 +56,7 @@ const App = (props) => {
 
       </div>
 
+      <Footer />
 
     </>
   );

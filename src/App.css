@@ -245,6 +245,17 @@ template {
 	-ms-flex-align: center;
 	align-items: center
 }
+.button__show-more-users-wrapper{
+	display: flex;
+	/* flex-direction: column; */
+	justify-content: center;
+	text-align: center;
+}
+.button_show-more-users {
+	width: 400px;
+	display: block;
+	/* margin: 0 auto; */
+}
 .login {
 	width: 340px;
 	min-height: 620px;

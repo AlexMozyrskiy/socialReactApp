@@ -24,11 +24,6 @@ const UsersPageSingleUser = (props) => {
                 }
                 
                 <ButtonPreloader displayNone={!props.clickedFollowButtonsArray.some((element) => element == props.singleUser.id)} dotsCount={3} classes={["loader", "loader_header-loginbutton"]} />
-                {/* <div className="loader loader_header-loginbutton displaynone">
-                    <div id="fountainG_1" className="fountainG"></div>
-                    <div id="fountainG_2" className="fountainG"></div>
-                    <div id="fountainG_3" className="fountainG"></div>
-                </div> */}
             </div>
         </div>
     );
