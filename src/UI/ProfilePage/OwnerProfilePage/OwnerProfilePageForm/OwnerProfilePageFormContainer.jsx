@@ -36,7 +36,7 @@ const OwnerProfilePageFormContainer = (props) => {
             status: formData.status ? formData.status : null,
             fullName: formData.fullName ? formData.fullName : null,
             aboutMe: formData.aboutMe ? formData.aboutMe : null,
-            lookingForAJob: formData.lookingForAJob ? formData.lookingForAJob : null,
+            lookingForAJob: formData.lookingForAJob,
             lookingForAJobDescription: formData.lookingForAJobDescription ? formData.lookingForAJobDescription : null,
             contacts: {
                 facebook: formData.facebook ? formData.facebook : null,
