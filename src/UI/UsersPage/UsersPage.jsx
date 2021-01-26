@@ -27,8 +27,8 @@ const UsersPage = (props) => {
                         }
 
                         <div className="button__show-more-users-wrapper">
-                            <button className={cn("button", "button_show-more-users", { "displaynone": false })} onClick={() => props.loadNextPartOfUsers(props.currentPage + 1)}>Show More</button>
-                            <ButtonPreloader displayNone={true} dotsCount={10} classes={["loader", "button_show-more-users"]} />
+                            <button className={cn("button", "button_show-more-users", { "displaynone": props.isButtonLoadMoreUsersClicked })} onClick={() => props.loadNextPartOfUsers(props.currentPage + 1)}>Show More</button>
+                            <ButtonPreloader displayNone={!props.isButtonLoadMoreUsersClicked} dotsCount={10} classes={["loader", "button_show-more-users"]} />
                         </div>
                     </div>
 

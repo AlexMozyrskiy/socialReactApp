@@ -25,3 +25,11 @@ export const getIdClickedFollowButtonsArray =  (state) => {
 export const getRunUseEffect =  (state) => {
     return state.users.runUseEffectInUsersPageContainer;
 }
+
+export const getIsFirstUsersLoaded =  (state) => {
+    return state.users.isFirstUsersLoaded;
+}
+
+export const getIsButtonLoadMoreUsersClicked =  (state) => {
+    return state.users.isButtonLoadMoreUsersClicked;
+}

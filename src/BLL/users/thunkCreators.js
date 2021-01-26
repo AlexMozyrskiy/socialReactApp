@@ -1,12 +1,18 @@
 import { usersAPI } from "../../DAL/users/api";
 import {
     setUsersArray, setCurrentPage, setIsPreloaderActive, followUser,
-    setClickedButtonId, unSetClickedButtonId, toogleRunUseEffect
+    setClickedButtonId, unSetClickedButtonId, toogleRunUseEffect,
+    isButtonLoadMoreUsersClicked
 } from "./actionCreators";
 
-export const getUsersThunkCreator = (currentPage = 1, usersPerPage = 10) => async (dispatch) => {
-    debugger
-    dispatch(setIsPreloaderActive(true));
+
+export const getUsersThunkCreator = (turnOnTheButtonPreloader = false, currentPage = 1, usersPerPage = 10) => async (dispatch) => {
+
+    if(turnOnTheButtonPreloader) {                     // если мы делаем первый запрос: только перешли на страницу юзеров покажем общий прелоадер, если мы уже заходили и нажали кнопку внизу страницы загрузить еще юзеров покажем вместо кнопки лоадер кнопки, а не общий лоадер
+        dispatch(isButtonLoadMoreUsersClicked(true));
+    } else {
+        dispatch(setIsPreloaderActive(true));
+    }
 
     const data = await usersAPI.getUsers(currentPage, usersPerPage);
 
@@ -15,9 +21,13 @@ export const getUsersThunkCreator = (currentPage = 1, usersPerPage = 10) => asyn
         dispatch(setCurrentPage(currentPage));
     }
 
-    dispatch(setIsPreloaderActive(false));
-
     dispatch(toogleRunUseEffect(false));
+
+    if(turnOnTheButtonPreloader) {
+        dispatch(isButtonLoadMoreUsersClicked(false));
+    } else {
+        dispatch(setIsPreloaderActive(false));
+    }
 }
 
 export const followUserThunkCreator = (userId, isFollow) => async (dispatch) => {

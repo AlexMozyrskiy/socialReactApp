@@ -2,7 +2,7 @@ import {
     SET_USERS_ARRAY_TOTAL_COUNT_ERROR_INTO_STATE, SET_CURRENT_PAGE_INTO_STATE,
     IS_PRELOADER_ACTIVE_INTO_STATE, TOOGLE_FOLLOW_USER,
     SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE, UN_SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE,
-    TOOGLE_RUN_USE_EFFECT
+    TOOGLE_RUN_USE_EFFECT, IS_BUTTON_LOAD_MORE_USERS_CLICKED
 } from "./actionTypes";
 
 const initialState = {
@@ -21,6 +21,7 @@ const initialState = {
     ],
 
     isPreloaderActive: false,
+    isButtonLoadMoreUsersClicked: false,
     currentPage: 1,
     totalCount: 0,
     error: null,
@@ -48,6 +49,14 @@ const usersReducers = (state = initialState, action) => {
             const superState = {
                 ...state,
                 currentPage: action.currentPage
+            };
+            return superState;
+        }
+
+        case IS_BUTTON_LOAD_MORE_USERS_CLICKED: {
+            const superState = {
+                ...state,
+                isButtonLoadMoreUsersClicked: action.isClicked
             };
             return superState;
         }

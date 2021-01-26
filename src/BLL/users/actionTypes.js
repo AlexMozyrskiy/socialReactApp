@@ -5,3 +5,4 @@ export const IS_PRELOADER_ACTIVE_INTO_STATE = 'socialNetwork/users/IS_PRELOADER_
 export const SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE = 'socialNetwork/users/SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE';        // чтобы показывать лоадер вместо кнопки
 export const UN_SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE = 'socialNetwork/users/UN_SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE';  // чтобы показывать кнопку вместо лоадера
 export const TOOGLE_RUN_USE_EFFECT = 'socialNetwork/users/TOOGLE_RUN_USE_EFFECT';
+export const IS_BUTTON_LOAD_MORE_USERS_CLICKED = 'socialNetwork/users/IS_BUTTON_LOAD_MORE_USERS_CLICKED';
