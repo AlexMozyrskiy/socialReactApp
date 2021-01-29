@@ -1,6 +1,6 @@
 import { setIsHeaderLoginButtonClicked } from "./actionCreators";
 import { loginAPI } from "./../../DAL/login/api";
-import { setUserData, setUserInfoIntoState, setUserStatusIntoState } from "../authUserData/actionCreators";
+import { setUserData, setUserInfoIntoState, setUserStatusIntoState, setRunUseEffectAppComponent } from "../authUserData/actionCreators";
 import { initializedApp } from "../initializedApp/actionCreators";
 
 export const logOutThunkCreator = (/* email, password, rememberMe = false, captcha = false */) => async (dispatch) => {

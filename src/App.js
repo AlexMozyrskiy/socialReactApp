@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import HeaderContainer from "./UI/Header/HeaderContainer";
 import './App.css';
@@ -11,7 +11,8 @@ import SideBarContainer from "./UI/SideBar/SideBarContainer";
 import Footer from "./UI/Footer/Footer";
 import { getIsAppInitializedSelector } from "./BLL/initializedApp/selectors";
 import { initializedAppThunkCreator } from "./BLL/initializedApp/thunkCreators";
-import { getIsLoggedInSelector, getOwnerIdSelector } from "./BLL/authUserData/selectors";
+import { setRunUseEffectAppComponent } from "./BLL/authUserData/actionCreators";
+import { getIsLoggedInSelector, getOwnerIdSelector, getRunUseEffectAppComponent } from "./BLL/authUserData/selectors";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import AppPreloader from "./UI/common/AppPreloader";
@@ -19,7 +20,11 @@ import AppPreloader from "./UI/common/AppPreloader";
 const App = (props) => {
 
   useEffect( () => {
-    props.initializedAppThunkCreator();
+    if(props.runUseEffectAppComponent) {    // для того чтобы в useEffect в App.js делать запрос на сервер авторизован ли пользователь(me) только 1 раз при логине и логауте. useEffect делает 2 раза так как зависит от свойства стейта isLoggedIn, а при авторизации и логауте оно меняется и получается запрос уходит 2 раза
+      props.setRunUseEffectAppComponent(false);
+      props.initializedAppThunkCreator();
+      debugger
+    }
   }, [props.isLoggedIn]);
 
   if(!props.isAppInitialized) {
@@ -67,8 +72,9 @@ const mapStateToProps = (state) => {
   return {
     isAppInitialized: getIsAppInitializedSelector(state),
     isLoggedIn: getIsLoggedInSelector(state),
-    ownerId: getOwnerIdSelector(state)
+    ownerId: getOwnerIdSelector(state),
+    runUseEffectAppComponent: getRunUseEffectAppComponent(state)
   }
 }
 
-export default connect(mapStateToProps, { initializedAppThunkCreator })(App);
+export default connect(mapStateToProps, { initializedAppThunkCreator, setRunUseEffectAppComponent })(App);

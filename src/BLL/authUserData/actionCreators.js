@@ -1,7 +1,7 @@
 import {
     LOGGED_IN_OUT_USER_DATA, SET_USER_STATUS_INTO_STATE,
     SET_USER_INFO_INTO_STATE, SET_USER_PHOTOS_INTO_STATE,
-    TOOGLE_LOOKING_FOR_A_JOB
+    TOOGLE_LOOKING_FOR_A_JOB, RUN_USE_EFFECT_APP_COMPONENT
 } from "./actionTypes";
 
 export const setUserData = ({ userId, userLogin, userEmail, isUserLoggedIn }) => {
@@ -15,6 +15,8 @@ export const setUserData = ({ userId, userLogin, userEmail, isUserLoggedIn }) =>
 };
 
 export const setUserStatusIntoState = (userStatus) => ({ type: SET_USER_STATUS_INTO_STATE, status: userStatus });
+
+export const setRunUseEffectAppComponent = (booleanVar) => ({ type: RUN_USE_EFFECT_APP_COMPONENT, runUseEffectAppComponent: booleanVar });
 
 export const setUserInfoIntoState = (userInfo) => {
     return {

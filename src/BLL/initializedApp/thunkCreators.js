@@ -1,4 +1,5 @@
 import { isAuthThunkCreator } from "../authUserData/thunkCreators";
+import { setRunUseEffectAppComponent } from "../authUserData/actionCreators";
 import { initializedApp } from "./actionCreators";
 
 export const initializedAppThunkCreator = () => (dispatch) => {

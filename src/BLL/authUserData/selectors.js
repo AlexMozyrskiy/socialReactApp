@@ -37,3 +37,7 @@ export const getOwnerAboutMeSelector =  (state) => {
 export const getOwnerContactsSelector =  (state) => {
     return state.authUserData.contacts;
 }
+
+export const getRunUseEffectAppComponent =  (state) => {
+    return state.authUserData.runUseEffectAppComponent;
+}

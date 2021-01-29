@@ -8,12 +8,14 @@ import {
     getCaptchaURLSelector, getResponseErrorTextSelector
 } from "../../../BLL/loginModalWindow/selectors";
 import { setResponseErrorTextIntoState } from "../../../BLL/loginModalWindow/actionCreators";
+import { setRunUseEffectAppComponent } from "../../../BLL/authUserData/actionCreators";
 
 const LoginModalWindowFormContainer = (props) => {
 
     const { register, handleSubmit, errors } = useForm();
 
     function onSubmit(formData) {
+        // props.setRunUseEffectAppComponent(true);
         // тут действия которые выполнятся при сабмите формы
 
         props.logInThunkCreator(formData.email, formData.password, formData.rememberMe, formData.captcha);
@@ -51,4 +53,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { logInThunkCreator, setResponseErrorTextIntoState })(LoginModalWindowFormContainer);
+export default connect(mapStateToProps, { logInThunkCreator, setResponseErrorTextIntoState, setRunUseEffectAppComponent })(LoginModalWindowFormContainer);

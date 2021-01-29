@@ -5,6 +5,7 @@ import { getIsLoggedInSelector } from "../../../BLL/authUserData/selectors";
 import { getIsHeaderLoginButtonClickedSelector } from "../../../BLL/header/selectors";
 import { setIsModalLoginWindowActive } from "../../../BLL/loginModalWindow/actionCreators";
 import { setIsHeaderLoginButtonClicked } from "../../../BLL/header/actionCreators";
+import { setRunUseEffectAppComponent } from "../../../BLL/authUserData/actionCreators";
 import { logOutThunkCreator } from "../../../BLL/header/thunkCreators";
 
 const HeaderLoginButtonContainer = (props) => {
@@ -15,6 +16,7 @@ const HeaderLoginButtonContainer = (props) => {
     }
 
     function logOutButtonClicked() {       // функция для запуска санки логаута
+        props.setRunUseEffectAppComponent(true);
         props.logOutThunkCreator();
     }
 
@@ -40,5 +42,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     setIsModalLoginWindowActive, setIsHeaderLoginButtonClicked,
-    logOutThunkCreator
+    logOutThunkCreator, setRunUseEffectAppComponent
 })(HeaderLoginButtonContainer);

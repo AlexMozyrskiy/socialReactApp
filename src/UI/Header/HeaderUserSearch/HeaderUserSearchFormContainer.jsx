@@ -14,8 +14,7 @@ const HeaderUserSearchFormContainer = (props) => {
         formData.id = Number(formData.id)
         // действия с заполненными данными, например санки
         // console.log(formData.id);
-        history.push("/profile/" + formData.id);              // добавляет новый УРЛ и компонент перересовывается правильно
-        props.notOwnerUserProfileThunkCreator(formData.id);
+        history.push("/profile/" + formData.id);              // добавляет новый УРЛ и компонент перересовывается правильно, роутер автоматом перекидывает на страницк найденного пользователя
     }
 
     function isIntegerValidation(fieldValue) {
