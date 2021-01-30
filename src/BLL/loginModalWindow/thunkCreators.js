@@ -13,14 +13,12 @@ export const logInThunkCreator = (email, password, rememberMe = false, captcha =
     dispatch(setIsModalLoginWindowButtonClicked(true));
 
     const data = await loginAPI.logIn(email, password, rememberMe, captcha);
-    debugger
 
     if (data.resultCode === 0) {            // если пользователь залогинен
         dispatch(initializedAppThunkCreator());
         dispatch(setIsModalLoginWindowActive(false));
         dispatch(setIsHeaderLoginButtonClicked(false));
         dispatch(setCaptchaIntoState(false, null));
-        debugger
     } else if (data.resultCode === 10) {             // captcha
         loginAPI.getCaptcha()
             .then(captchaURL => {

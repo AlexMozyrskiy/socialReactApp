@@ -23,7 +23,6 @@ const App = (props) => {
     if(props.runUseEffectAppComponent) {    // для того чтобы в useEffect в App.js делать запрос на сервер авторизован ли пользователь(me) только 1 раз при логине и логауте. useEffect делает 2 раза так как зависит от свойства стейта isLoggedIn, а при авторизации и логауте оно меняется и получается запрос уходит 2 раза
       props.setRunUseEffectAppComponent(false);
       props.initializedAppThunkCreator();
-      debugger
     }
   }, [props.isLoggedIn]);
 

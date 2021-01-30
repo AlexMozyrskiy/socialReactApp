@@ -2,7 +2,7 @@ import { userInfoAPI } from "../../DAL/userInfo/api";
 import { loginAPI } from "../../DAL/login/api";
 import {
     setUserData, setUserStatusIntoState,
-    setUserInfoIntoState, setRunUseEffectAppComponent
+    setUserInfoIntoState
 } from "./actionCreators";
 
 export const isAuthThunkCreator = () => async (dispatch) => {
@@ -22,5 +22,4 @@ export const isAuthThunkCreator = () => async (dispatch) => {
             dispatch(setUserInfoIntoState(userInfo));
         }
     }
-    debugger
 }

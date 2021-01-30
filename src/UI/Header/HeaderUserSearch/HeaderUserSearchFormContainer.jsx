@@ -17,21 +17,11 @@ const HeaderUserSearchFormContainer = (props) => {
         history.push("/profile/" + formData.id);              // добавляет новый УРЛ и компонент перересовывается правильно, роутер автоматом перекидывает на страницк найденного пользователя
     }
 
-    function isIntegerValidation(fieldValue) {
-        fieldValue = Number(fieldValue);        // преобразуем в число, если пришла строка типа "aSD" без цифр вернет NaN
-        if(Number.isInteger(fieldValue)) {      // если целое число валидицию пройдет
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     return <HeaderUserSearchForm
         register={register}
         handleSubmit={handleSubmit}
         errors={errors.id}
         onSubmit={onSubmit}
-        isIntegerValidation={isIntegerValidation}
         isSearchButtonClicked={props.isSearchButtonClicked}
     />
 }
