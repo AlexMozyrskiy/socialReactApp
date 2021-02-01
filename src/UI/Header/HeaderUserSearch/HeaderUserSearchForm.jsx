@@ -11,8 +11,6 @@ const HeaderUserSearchForm = (props) => {
                     validate: {
                         isValueInteger: value => Number.isInteger(Number(value)),
                         isValuePositive: value => Number(value) > 0
-                        // positive: value => parseInt(value, 10) > 0,
-                        // lessThanTen: value => parseInt(value, 10) < 10 || 'should be lower than 10',
                       }
                     } ) }
                 type="text"
