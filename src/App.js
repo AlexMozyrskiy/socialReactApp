@@ -51,7 +51,7 @@ const App = (props) => {
             }
             
             <Route path='/users' render={() => <UsersPageContainer />} />
-            <Route path='/profile/:userId?' render={() => <ProfilePageContainer />} />
+            <Route path='/profile/:userId' render={() => <ProfilePageContainer />} />
             <Route path='/messages' render={() => <MessagesPageContainer />} />
             <Route path='*' render={() => <NotFoundPage />} />
           </Switch>
