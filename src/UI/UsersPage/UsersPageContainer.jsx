@@ -24,8 +24,8 @@ const UsersPageContainer = (props) => {
         }
     }, [props.currentPage]);
 
-    const maxCountOfPaginationQuads = Math.ceil(props.totalUsersCountInServer / props.countOfShownUsers);       // цифра которая будет в последнем квадратике пагинации (после троеточия), то есть макисмально возможная показываемая страница
-    console.log(maxCountOfPaginationQuads);
+    const maxCountOfPaginationSquares = Math.ceil(props.totalUsersCountInServer / props.countOfShownUsers);       // цифра которая будет в последнем квадратике пагинации (после троеточия), то есть макисмально возможная показываемая страница
+    console.log(maxCountOfPaginationSquares);
 
     function followUnfollowUser(id, isFollow) {
         props.followUserThunkCreator(id, isFollow);
@@ -39,7 +39,7 @@ const UsersPageContainer = (props) => {
     }
 
     function changePaginationPages(numberOfClickedQuad) {       // при клике на какой либо квадратик пагинации
-        if (numberOfClickedQuad > 0 && numberOfClickedQuad <= maxCountOfPaginationQuads) {                          // чтобы цтфры в квадратиках пагинации не были отрицательными
+        if (numberOfClickedQuad > 0 && numberOfClickedQuad <= maxCountOfPaginationSquares) {                          // чтобы цтфры в квадратиках пагинации не были отрицательными
             numberOfClickedQuad = Number(numberOfClickedQuad);
             changeCurrentPageForPagination(numberOfClickedQuad);   // изменим текущую страницу
             // console.log(numberOfClickedQuad)
@@ -57,9 +57,9 @@ const UsersPageContainer = (props) => {
     }
 
     // ----------- Создадим массив спанов для отображения квадратиков пагинации ----------------
-    let paginationQuads = new Array();
+    let paginationSquares = new Array();
     for (let i = firstPageForPagination; i <= lastPageForPagination; i++) {
-        paginationQuads.push(
+        paginationSquares.push(
             <span
                 key={i}
                 className={cn("users__pagination-single-span", { "users__pagination-single-span_active": i === currentPageForPagination })}     // если i равно текущей страницы додавим класс активности
@@ -83,9 +83,9 @@ const UsersPageContainer = (props) => {
         currentPageForPagination={currentPageForPagination}
         // firstPageForPagination={firstPageForPagination}
         // lastPageForPagination={lastPageForPagination}
-        paginationQuads={paginationQuads}
+        paginationSquares={paginationSquares}
         changePaginationPages={changePaginationPages}
-        maxCountOfPaginationQuads={maxCountOfPaginationQuads}
+        maxCountOfPaginationSquares={maxCountOfPaginationSquares}
     />
 }
 

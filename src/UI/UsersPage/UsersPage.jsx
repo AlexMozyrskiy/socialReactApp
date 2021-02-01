@@ -20,15 +20,15 @@ const UsersPage = (props) => {
                                 </span>
                             }
 
-                            {props.paginationQuads}
+                            {props.paginationSquares}
 
-                            {props.currentPageForPagination === props.maxCountOfPaginationQuads         // если текущая страница === последняя страница не отобразим троеточие, стрелку вправо и последнюю стрницу после троеточия
+                            {props.currentPageForPagination === props.maxCountOfPaginationSquares         // если текущая страница === последняя страница не отобразим троеточие, стрелку вправо и последнюю стрницу после троеточия
                                 ? null
                                 : <>
                                     <span className="users__pagination-single-span">...</span>
                                     <span
                                         className="users__pagination-single-span"
-                                        onClick={(e) => props.changePaginationPages((e.currentTarget.innerHTML))}>{props.maxCountOfPaginationQuads}
+                                        onClick={(e) => props.changePaginationPages((e.currentTarget.innerHTML))}>{props.maxCountOfPaginationSquares}
                                     </span>
                                     <span
                                         className="users__pagination-single-span"
