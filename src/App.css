@@ -573,6 +573,34 @@ template {
 	align-self: center;
 	margin-left: auto
 }
+.users__pagination-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.users__pagination{
+	display: flex;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+.users__pagination-single-span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border: solid 1px #1e70a9;
+}
+.users__pagination-single-span:hover {
+	cursor: pointer;
+}
+.users__pagination-single-span:not(:last-child) {
+	margin-right: 5px;
+}
+.users__pagination-single-span_active {
+	color: #fff;
+	background-color: #1e70a9;
+}
 .profile__item-wrapper {
 	height: 50px;
 	border-bottom: 1px solid #f1f2f2;
