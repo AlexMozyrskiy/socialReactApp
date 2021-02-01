@@ -12,25 +12,34 @@ const UsersPage = (props) => {
                 : <>
                     <div className="users__pagination-wrapper">
                         <div className="users__pagination">
-                            <span className="users__pagination-single-span">&larr;</span>
+                            {props.currentPageForPagination === 1           // если текущая страница === 1 не отобразим стрелку влево
+                                ? null
+                                : <span
+                                    className="users__pagination-single-span"
+                                    onClick={(e) => props.changePaginationPages((props.currentPageForPagination - 1))}>&larr;     {/* после нажатия на стрелку влево вычислим какая текущая страница должна быть */}
+                                </span>
+                            }
 
-                            <span className="users__pagination-single-span users__pagination-single-span_active">1</span>
-                            <span className="users__pagination-single-span">2</span>
-                            <span className="users__pagination-single-span">3</span>
-                            <span className="users__pagination-single-span">4</span>
-                            <span className="users__pagination-single-span">5</span>
-                            <span className="users__pagination-single-span">6</span>
-                            <span className="users__pagination-single-span">7</span>
-                            <span className="users__pagination-single-span">8</span>
-                            <span className="users__pagination-single-span">9</span>
-                            <span className="users__pagination-single-span">10</span>
+                            {props.paginationQuads}
 
-                            <span className="users__pagination-single-span">...</span>
-                            <span className="users__pagination-single-span">Last Page</span>
+                            {props.currentPageForPagination === props.maxCountOfPaginationQuads         // если текущая страница === последняя страница не отобразим троеточие, стрелку вправо и последнюю стрницу после троеточия
+                                ? null
+                                : <>
+                                    <span className="users__pagination-single-span">...</span>
+                                    <span
+                                        className="users__pagination-single-span"
+                                        onClick={(e) => props.changePaginationPages((e.currentTarget.innerHTML))}>{props.maxCountOfPaginationQuads}
+                                    </span>
+                                    <span
+                                        className="users__pagination-single-span"
+                                        onClick={(e) => props.changePaginationPages((props.currentPageForPagination + 1))}>&rarr;     {/* после нажатия на стрелку вправо вычислим какая текущая страница должна быть */}
+                                    </span>
+                                </>
+                            }
 
-                            <span className="users__pagination-single-span">&rarr;</span>
                         </div>
                     </div>
+
                     <div className="users__users">
 
                         {

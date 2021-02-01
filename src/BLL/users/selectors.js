@@ -33,3 +33,7 @@ export const getIsFirstUsersLoaded =  (state) => {
 export const getIsButtonLoadMoreUsersClicked =  (state) => {
     return state.users.isButtonLoadMoreUsersClicked;
 }
+
+export const getCountOfShownUsers =  (state) => {
+    return state.users.countOfShownUsers;
+}

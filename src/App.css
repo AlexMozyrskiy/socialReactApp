@@ -587,8 +587,8 @@ template {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 30px;
-	height: 30px;
+	width: 37px;
+	height: 37px;
 	border: solid 1px #1e70a9;
 }
 .users__pagination-single-span:hover {
