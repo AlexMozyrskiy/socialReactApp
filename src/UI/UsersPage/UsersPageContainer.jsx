@@ -60,7 +60,7 @@ const UsersPageContainer = (props) => {
     }
 
     // ----------- Создадим массив спанов для отображения квадратиков пагинации ----------------
-    let paginationSquares = new Array();
+    let paginationSquares = [];
     for (let i = props.numberInFirstPaginationSquare; i <= props.numberInLastPaginationSquare; i++) {
         paginationSquares.push(
             <span

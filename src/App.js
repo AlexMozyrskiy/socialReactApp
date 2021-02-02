@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import HeaderContainer from "./UI/Header/HeaderContainer";
 import './App.css';
@@ -60,7 +60,7 @@ const App = (props) => {
 
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
 
     </>
   );

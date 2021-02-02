@@ -6,7 +6,7 @@ const OwnerProfilePagePhoto = (props) => {
     return (
         <div className="profile__photo">
             <p>My Photo:</p>
-            <img src={props.largePhoto} alt="photo" className="profile__photo-img" />
+            <img src={props.largePhoto} alt="user" className="profile__photo-img" />
             <label className="button button_profile-photo">
                 <input type="file" onChange={ (e) => props.onMainAvatarSelected(e.target.files[0]) } />Update Photo
             </label>

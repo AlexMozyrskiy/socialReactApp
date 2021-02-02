@@ -50,7 +50,7 @@ const Footer = () => {
                             <li className="footer__li"><a href="tel:+123456789" className="footer__a">+1(234) 567 89</a></li>
                             <li className="footer__li"><a href="email:someemail@someemail.com"
                                 className="footer__a">someemail@someemail.com</a></li>
-                            <adress className="footer__li"><a href="#" className="footer__a">Some Adress</a></adress>
+                            <li className="footer__li"><a href="#" className="footer__a">Some Adress</a></li>
                         </ul>
                     </div>
                 </div>

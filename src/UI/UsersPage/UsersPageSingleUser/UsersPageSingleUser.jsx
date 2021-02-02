@@ -8,7 +8,7 @@ const UsersPageSingleUser = (props) => {
     return (
         <div className="users__single-user">
             <div className="users__user-photo">
-                <img src={ props.singleUser.photos.small ? props.singleUser.photos.small : defaultPhoto } alt="User Photo" className="users__user-photo-img" />
+                <img src={ props.singleUser.photos.small ? props.singleUser.photos.small : defaultPhoto } alt="User" className="users__user-photo-img" />
             </div>
             <div className="users__user-info">
                 <h2 className="users__user-name"><NavLink to={props.singleUser.id ? `/profile/${props.singleUser.id}` : "#" }>{props.singleUser.name}</NavLink></h2>
@@ -19,11 +19,11 @@ const UsersPageSingleUser = (props) => {
             <div className="users__add-friend-button">
                 {
                     props.isLoggedIn
-                    ? <button className={cn("button", "button_add-friend", {"displaynone": props.clickedFollowButtonsArray.some((element) => element == props.singleUser.id)})} onClick={() => props.followUnfollowUser(props.singleUser.id, !props.singleUser.followed)}>{ props.singleUser.followed ? "Un Follow User" : "Follow User" }</button>
+                    ? <button className={cn("button", "button_add-friend", {"displaynone": props.clickedFollowButtonsArray.some((element) => element === props.singleUser.id)})} onClick={() => props.followUnfollowUser(props.singleUser.id, !props.singleUser.followed)}>{ props.singleUser.followed ? "Un Follow User" : "Follow User" }</button>
                     : null
                 }
                 
-                <ButtonPreloader displayNone={!props.clickedFollowButtonsArray.some((element) => element == props.singleUser.id)} dotsCount={3} classes={["loader", "loader_header-loginbutton"]} />
+                <ButtonPreloader displayNone={!props.clickedFollowButtonsArray.some((element) => element === props.singleUser.id)} dotsCount={3} classes={["loader", "loader_header-loginbutton"]} />
             </div>
         </div>
     );

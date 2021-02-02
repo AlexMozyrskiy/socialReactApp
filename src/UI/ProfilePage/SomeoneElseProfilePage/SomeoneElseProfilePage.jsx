@@ -23,13 +23,13 @@ const SomeoneElseProfilePage = (props) => {
                 <p className="profile__contacts-title">My Contacts:</p>{" "}
                 <ul className="profile__contacts-ul">
                     { props.contactsKeysArray.map(contactKey => {
-                        return <li key={contactKey}>{contactKey + ": "} { props.contacts[contactKey] ? <a href={ props.contacts[contactKey] } target="_blank">{ props.contacts[contactKey] }</a> : "No " + contactKey + " Information" } </li>
+                        return <li key={contactKey}>{contactKey + ": "} { props.contacts[contactKey] ? <a href={ props.contacts[contactKey] } rel="noreferrer nofollow" target="_blank">{ props.contacts[contactKey] }</a> : "No " + contactKey + " Information" } </li>
                     }) }
                 </ul>
             </div>
             <div className="profile__photo">
                 <p>My Photo:</p>
-                <img src={props.largePhoto ? props.largePhoto : defaultPhoto} alt="photo" className="profile__photo-img" />
+                <img src={props.largePhoto ? props.largePhoto : defaultPhoto} alt="user" className="profile__photo-img" />
             </div>
         </div>
     );

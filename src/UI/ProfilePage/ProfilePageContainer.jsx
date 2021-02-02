@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import OwnerProfilePage from "./OwnerProfilePage/OwnerProfilePage";
 import SomeoneElseProfilePageContainer from "./SomeoneElseProfilePage/SomeoneElseProfilePageContainer";
 import { withRouter } from "react-router-dom";
@@ -9,21 +9,8 @@ import { compose } from "redux";
 
 const ProfilePageContainer = (props) => {
 
-    useEffect( () => {
-        if (props.ownerId === props.match.params.userId) {
-            return <OwnerProfilePage
-                ownerId={props.ownerId}
-                userIdFromUrl={props.match.params.userId}          // id из адресной строки
-            />
-        } else {
-            return <SomeoneElseProfilePageContainer
-                
-            />
-        }
-    }, [props.notOwnerId] );
-
     props.match.params.userId = Number(props.match.params.userId);
-    
+
     if (props.ownerId === props.match.params.userId) {
         return <OwnerProfilePage
             ownerId={props.ownerId}
