@@ -37,3 +37,11 @@ export const getIsButtonLoadMoreUsersClicked =  (state) => {
 export const getCountOfShownUsers =  (state) => {
     return state.users.countOfShownUsers;
 }
+
+export const getNumberInFirstPaginationSquare =  (state) => {
+    return state.users.numberInFirstPaginationSquare;
+}
+
+export const getNumberInLastPaginationSquare =  (state) => {
+    return state.users.numberInLastPaginationSquare;
+}

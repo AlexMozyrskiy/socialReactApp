@@ -4,61 +4,64 @@ import {
     getUsersArraySelector, getTotalUsersCountSelector,
     getUsersCurrentPageSelector, getIsPreloaderActiveSelector,
     getIdClickedFollowButtonsArray, getRunUseEffect, getIsFirstUsersLoaded,
-    getIsButtonLoadMoreUsersClicked, getCountOfShownUsers
+    getIsButtonLoadMoreUsersClicked, getCountOfShownUsers,
+    getNumberInFirstPaginationSquare, getNumberInLastPaginationSquare
 } from "../../BLL/users/selectors";
 import { getIsLoggedInSelector } from "../../BLL/authUserData/selectors";
-import { setCurrentPage, toogleRunUseEffect } from "../../BLL/users/actionCreators";
+import {
+    setCurrentPage, toogleRunUseEffect,
+    toogleIsFirstUsersLoaded, setNumbersInFirstLastPaginationSquares
+} from "../../BLL/users/actionCreators";
 import { getUsersThunkCreator, followUserThunkCreator } from "../../BLL/users/thunkCreators";
 import UsersPage from "./UsersPage";
 import cn from "classnames";
 
 const UsersPageContainer = (props) => {
 
-    let [currentPageForPagination, changeCurrentPageForPagination] = useState(1);   // активная страница для пагинации цифрами вверзу страницы юзеров
-    let [firstPageForPagination, changeFirstPageForPagination] = useState(1);       // с какой цифры начинаются квадратики пагинации вверху страницы (будет меняться, если текущая страница будет бельше цифры в последнем квалратике пагинации или меньше цифры в первом квадратике)
-    let [lastPageForPagination, changeLastPageForPagination] = useState(10);        // цифра в последнем квалратике пагинации, не последняя возможная страница, а именно цифра перед троеточием, также будет меняться
+    const maxCountOfPaginationSquares = Math.ceil(props.totalUsersCountInServer / props.countOfShownUsers);       // цифра которая будет в последнем квадратике пагинации (после троеточия), то есть макисмально возможная показываемая страница
+
+    let [currentPageForPagination, changeCurrentPageForPagination] = useState(props.currentPage);   // активная страница для пагинации цифрами вверзу страницы юзеров
 
     useEffect(() => {
         if (props.runUseEffect) {                               // если пришли с прошлой странице при первом рендере useEffect запустится в любом случае, по этому вводим доп свойсто в стейт
-            props.getUsersThunkCreator(props.isFirstUsersLoaded, props.currentPage, props.countOfShownUsers);
+            props.getUsersThunkCreator(props.currentPage, props.countOfShownUsers, props.isFirstUsersLoaded);
         }
     }, [props.currentPage]);
 
-    const maxCountOfPaginationSquares = Math.ceil(props.totalUsersCountInServer / props.countOfShownUsers);       // цифра которая будет в последнем квадратике пагинации (после троеточия), то есть макисмально возможная показываемая страница
-    console.log(maxCountOfPaginationSquares);
-
     function followUnfollowUser(id, isFollow) {
         props.followUserThunkCreator(id, isFollow);
-        // console.log(id, isFollow);
     }
 
     function loadNextPartOfUsers(nextPage) {
         props.toogleRunUseEffect(true);
         props.setCurrentPage(nextPage);
-        // props.toogleRunUseEffect(false);
     }
 
-    function changePaginationPages(numberOfClickedQuad) {       // при клике на какой либо квадратик пагинации
-        if (numberOfClickedQuad > 0 && numberOfClickedQuad <= maxCountOfPaginationSquares) {                          // чтобы цтфры в квадратиках пагинации не были отрицательными
-            numberOfClickedQuad = Number(numberOfClickedQuad);
-            changeCurrentPageForPagination(numberOfClickedQuad);   // изменим текущую страницу
-            // console.log(numberOfClickedQuad)
-            // console.log(currentPageForPagination)
-            // debugger
+    function loadNewUsersAfterPaginationSquareClick(page) {
+        props.toogleIsFirstUsersLoaded(false);                  // чтобы партия полученных с сервера юзеров заменила текущий массив юзеров
+        props.toogleRunUseEffect(true);
+        props.setCurrentPage(page);
+    }
 
-            if (numberOfClickedQuad > lastPageForPagination) {                  // если цифра в кликнутом квадратике больше чем цифра в последнем квадратике (то есть нажали стрелочку вправо на находясь на посленем квадратике)
-                changeFirstPageForPagination(numberOfClickedQuad - 9);         // присвоим первому квадратику соответствующую цифру чтобы отображалось так же 10 квадратиков
-                changeLastPageForPagination(numberOfClickedQuad);
-            } else if (numberOfClickedQuad < firstPageForPagination) {          // если цифра в кликнутом квадратике меньше чем цифра в первом квадратике
-                changeFirstPageForPagination(numberOfClickedQuad);
-                changeLastPageForPagination(numberOfClickedQuad + 9);
+    function changePaginationPages(numberOfClickedSquare) {       // при клике на какой либо квадратик пагинации
+        if (numberOfClickedSquare > 0 && numberOfClickedSquare <= maxCountOfPaginationSquares) {                          // чтобы цтфры в квадратиках пагинации не были отрицательными и больше максимально допустимого
+            numberOfClickedSquare = Number(numberOfClickedSquare);
+            changeCurrentPageForPagination(numberOfClickedSquare);   // изменим текущую страницу
+            loadNewUsersAfterPaginationSquareClick(numberOfClickedSquare);
+
+            if (numberOfClickedSquare > props.numberInLastPaginationSquare) {                  // если цифра в кликнутом квадратике больше чем цифра в последнем квадратике (то есть нажали стрелочку вправо на находясь на посленем квадратике)
+                props.setNumbersInFirstLastPaginationSquares((numberOfClickedSquare - 9), numberOfClickedSquare)
+                loadNewUsersAfterPaginationSquareClick(numberOfClickedSquare);
+            } else if (numberOfClickedSquare < props.numberInFirstPaginationSquare) {          // если цифра в кликнутом квадратике меньше чем цифра в первом квадратике
+                props.setNumbersInFirstLastPaginationSquares(numberOfClickedSquare, (numberOfClickedSquare + 9))
+                loadNewUsersAfterPaginationSquareClick(numberOfClickedSquare);
             }
         }
     }
 
     // ----------- Создадим массив спанов для отображения квадратиков пагинации ----------------
     let paginationSquares = new Array();
-    for (let i = firstPageForPagination; i <= lastPageForPagination; i++) {
+    for (let i = props.numberInFirstPaginationSquare; i <= props.numberInLastPaginationSquare; i++) {
         paginationSquares.push(
             <span
                 key={i}
@@ -81,8 +84,6 @@ const UsersPageContainer = (props) => {
         loadNextPartOfUsers={loadNextPartOfUsers}
         isButtonLoadMoreUsersClicked={props.isButtonLoadMoreUsersClicked}
         currentPageForPagination={currentPageForPagination}
-        // firstPageForPagination={firstPageForPagination}
-        // lastPageForPagination={lastPageForPagination}
         paginationSquares={paginationSquares}
         changePaginationPages={changePaginationPages}
         maxCountOfPaginationSquares={maxCountOfPaginationSquares}
@@ -101,7 +102,9 @@ const mapStateToProps = (state) => {
         clickedFollowButtonsArray: getIdClickedFollowButtonsArray(state),
         runUseEffect: getRunUseEffect(state),
         isFirstUsersLoaded: getIsFirstUsersLoaded(state),                   // тут это свойство используется так: если первый раз юзеров уже загрузили больше большой прелоадер показывать не будем, а будем вместо кнопки показать еще юзеров(в самом низу страницы) показывать лотадер кнопки
-        isButtonLoadMoreUsersClicked: getIsButtonLoadMoreUsersClicked(state)
+        isButtonLoadMoreUsersClicked: getIsButtonLoadMoreUsersClicked(state),
+        numberInFirstPaginationSquare: getNumberInFirstPaginationSquare(state),
+        numberInLastPaginationSquare: getNumberInLastPaginationSquare(state)
     }
 }
 
@@ -109,7 +112,11 @@ const mapDispatchToProps = {
     getUsersThunkCreator,
     followUserThunkCreator,
     setCurrentPage,
-    toogleRunUseEffect
+    toogleRunUseEffect,
+    toogleIsFirstUsersLoaded,
+    getNumberInFirstPaginationSquare,
+    getNumberInLastPaginationSquare,
+    setNumbersInFirstLastPaginationSquares
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersPageContainer);

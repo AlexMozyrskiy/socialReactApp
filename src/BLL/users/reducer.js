@@ -1,8 +1,10 @@
 import {
-    SET_USERS_ARRAY_TOTAL_COUNT_ERROR_INTO_STATE, SET_CURRENT_PAGE_INTO_STATE,
+    SET_USERS_ARRAY_TOTAL_COUNT_ERROR_INTO_STATE,
+    SET_CURRENT_PAGE_INTO_STATE,
     IS_PRELOADER_ACTIVE_INTO_STATE, TOOGLE_FOLLOW_USER,
     SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE, UN_SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE,
-    TOOGLE_RUN_USE_EFFECT, IS_BUTTON_LOAD_MORE_USERS_CLICKED
+    TOOGLE_RUN_USE_EFFECT, IS_BUTTON_LOAD_MORE_USERS_CLICKED, TOOGLE_IS_FIRST_USERS_LOADED,
+    SET_NUMBERS_IN_FIRST_LAST_PAGINATION_SQUARES
 } from "./actionTypes";
 
 const initialState = {
@@ -30,7 +32,10 @@ const initialState = {
 
     runUseEffectInUsersPageContainer: true,     // введено для того чтобы: при первом рендере компонента useEffect выполняется всегда, даже если переменная пекреданная ему не поменялась. Чтобы useEffect не запускался каждый раз при рендере(переходе например с другой страницы) вводим условие при котором он булдет запускаться
 
-    clickedButtonsIds: []          // массив ид по которым кликнули чтобы подписаться отписаться, чтобы показывать лоадер вместо кнопки
+    clickedButtonsIds: [],          // массив ид по которым кликнули чтобы подписаться отписаться, чтобы показывать лоадер вместо кнопки
+
+    numberInFirstPaginationSquare: 1,
+    numberInLastPaginationSquare: 10
 };
 
 const usersReducers = (state = initialState, action) => {
@@ -82,8 +87,8 @@ const usersReducers = (state = initialState, action) => {
             const superState = {
                 ...state,
                 items: state.items.map(item => {
-                    if(item.id === action.userId) {
-                        return {...item, followed: action.isFollow};
+                    if (item.id === action.userId) {
+                        return { ...item, followed: action.isFollow };
                     } else {
                         return item;
                     };
@@ -96,7 +101,7 @@ const usersReducers = (state = initialState, action) => {
             const superState = {
                 ...state,
                 clickedButtonsIds: [
-                    ...state.clickedButtonsIds, 
+                    ...state.clickedButtonsIds,
                     action.userId
                 ]
             };
@@ -114,6 +119,23 @@ const usersReducers = (state = initialState, action) => {
                 //         return id;
                 //     }
                 // })
+            };
+            return superState;
+        }
+
+        case TOOGLE_IS_FIRST_USERS_LOADED: {                          // чтобы показывать кнопку вместо лоадера
+            const superState = {
+                ...state,
+                isFirstUsersLoaded: action.booleanVariable
+            };
+            return superState;
+        }
+
+        case SET_NUMBERS_IN_FIRST_LAST_PAGINATION_SQUARES: {
+            const superState = {
+                ...state,
+                numberInFirstPaginationSquare: action.numberInFirstPaginationSquare,
+                numberInLastPaginationSquare: action.numberInLastPaginationSquare
             };
             return superState;
         }

@@ -2,7 +2,8 @@ import {
     SET_USERS_ARRAY_TOTAL_COUNT_ERROR_INTO_STATE, SET_CURRENT_PAGE_INTO_STATE,
     IS_PRELOADER_ACTIVE_INTO_STATE, TOOGLE_FOLLOW_USER,
     SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE, UN_SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE,
-    TOOGLE_RUN_USE_EFFECT, IS_BUTTON_LOAD_MORE_USERS_CLICKED
+    TOOGLE_RUN_USE_EFFECT, IS_BUTTON_LOAD_MORE_USERS_CLICKED, TOOGLE_IS_FIRST_USERS_LOADED,
+    SET_NUMBERS_IN_FIRST_LAST_PAGINATION_SQUARES
 } from "./actionTypes";
 
 export const setUsersArray = (usersArray, totalCount, error) => {
@@ -10,7 +11,7 @@ export const setUsersArray = (usersArray, totalCount, error) => {
         type: SET_USERS_ARRAY_TOTAL_COUNT_ERROR_INTO_STATE,
         usersArray: [...usersArray],
         totalCount: totalCount,
-        error: error
+        error: error,
     }
 };
 
@@ -22,8 +23,12 @@ export const followUser = (userId, isFollow) => ({type: TOOGLE_FOLLOW_USER, user
 
 export const toogleRunUseEffect = (booleanVariable) => ({type: TOOGLE_RUN_USE_EFFECT, booleanVariable});
 
+export const toogleIsFirstUsersLoaded = (booleanVariable) => ({type: TOOGLE_IS_FIRST_USERS_LOADED, booleanVariable});
+
 export const setClickedButtonId = (userId) => ({type: SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE, userId});        // чтобы показывать лоадер вместо кнопки
 
 export const unSetClickedButtonId = (userId) => ({type: UN_SET_FOLLOW_BUTTON_CLICKED_ID_INTO_STATE, userId});   // чтобы показывать кнопку вместо лоадера
 
 export const isButtonLoadMoreUsersClicked = (isClicked) => ({type: IS_BUTTON_LOAD_MORE_USERS_CLICKED, isClicked});   // чтобы загрузку вместо кликнтуой кнопки и наоборот
+
+export const setNumbersInFirstLastPaginationSquares = (firstNumber, lastNumber) => ({type: SET_NUMBERS_IN_FIRST_LAST_PAGINATION_SQUARES, numberInFirstPaginationSquare: firstNumber, numberInLastPaginationSquare: lastNumber});
