@@ -1,5 +1,5 @@
-export const getIsModalLoginWindowAciveSelector =  (state) => {
-    return state.loginModalWindow.isModalLoginWindowAcive;
+export const getIsModalLoginWindowActiveSelector =  (state) => {
+    return state.loginModalWindow.isModalLoginWindowActive;
 }
 
 export const getIsLoginButtonClickedSelector =  (state) => {
@@ -16,4 +16,8 @@ export const getCaptchaURLSelector =  (state) => {
 
 export const getResponseErrorTextSelector =  (state) => {
     return state.loginModalWindow.responseErrorText;
+}
+
+export const getIsLoginRequirementSelector =  (state) => {
+    return state.loginModalWindow.isLoginRequirementActive;
 }

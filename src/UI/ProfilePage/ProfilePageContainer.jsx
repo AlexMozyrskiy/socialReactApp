@@ -6,6 +6,7 @@ import { getIsLoggedInSelector, getOwnerIdSelector } from "../../BLL/authUserDat
 import { getNotOwnerIdSelector } from "../../BLL/notOwnerUserData/selectors";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { withAuth } from "../../UI/HOC/withAuth";
 
 const ProfilePageContainer = (props) => {
 
@@ -35,5 +36,6 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, { }),
-    withRouter
+    withRouter,
+    withAuth
 )(ProfilePageContainer);

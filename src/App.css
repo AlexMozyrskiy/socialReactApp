@@ -265,6 +265,12 @@ template {
 	box-shadow: 1px 10px 10px rgba(0, 0, 0, .5);
 	z-index: 1
 }
+.login__warning {
+	color: #900020;
+	font-weight: 700;
+	font-size: 22px;
+	text-align: center;
+}
 .login__wrapper {
 	width: 100%;
 	display: -webkit-box;
@@ -374,7 +380,7 @@ template {
 }
 .login__deactivate {
 	position: fixed;
-	top: -650px;
+	top: -750px;
 	-webkit-transition: 1s;
 	transition: 1s
 }

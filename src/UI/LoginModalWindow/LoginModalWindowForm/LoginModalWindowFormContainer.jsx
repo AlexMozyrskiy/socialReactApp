@@ -7,7 +7,7 @@ import {
     getIsLoginButtonClickedSelector, getIsCaptchActiveSelector,
     getCaptchaURLSelector, getResponseErrorTextSelector
 } from "../../../BLL/loginModalWindow/selectors";
-import { setResponseErrorTextIntoState } from "../../../BLL/loginModalWindow/actionCreators";
+import { setResponseErrorTextIntoState, toogleIsLoginRequirement } from "../../../BLL/loginModalWindow/actionCreators";
 import { setRunUseEffectAppComponent } from "../../../BLL/authUserData/actionCreators";
 
 const LoginModalWindowFormContainer = (props) => {
@@ -15,11 +15,9 @@ const LoginModalWindowFormContainer = (props) => {
     const { register, handleSubmit, errors } = useForm();
 
     function onSubmit(formData) {
-        // props.setRunUseEffectAppComponent(true);
         // тут действия которые выполнятся при сабмите формы
-
+        props.toogleIsLoginRequirement(false);      // уберем надпись о необходимости залогиниться
         props.logInThunkCreator(formData.email, formData.password, formData.rememberMe, formData.captcha);
-        // console.log(formData);
     }
 
     function deleteErrorMessage() {             // эта функция вызывсается когда юзер печатает что-либо в полях логин или пароль
@@ -53,4 +51,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { logInThunkCreator, setResponseErrorTextIntoState, setRunUseEffectAppComponent })(LoginModalWindowFormContainer);
+const mapDispatchToProps = {
+    logInThunkCreator,
+    setResponseErrorTextIntoState,
+    setRunUseEffectAppComponent,
+    toogleIsLoginRequirement
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModalWindowFormContainer);

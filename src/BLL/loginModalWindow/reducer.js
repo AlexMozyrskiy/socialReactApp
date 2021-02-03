@@ -1,14 +1,16 @@
 import {
     IS_MODAL_LOGIN_WINDOW_ACTIVE, IS_MODAL_LOGIN_WINDOW_BUTTON_CLICKED,
-    SET_CAPTCHA_INTO_STATE, SET_RESPONSE_ERROR_TEXT_INTO_STATE
+    SET_CAPTCHA_INTO_STATE, SET_RESPONSE_ERROR_TEXT_INTO_STATE,
+    TOOGLE_IS_LOGIN_REQUIREMENT
 } from "./actionTypes";
 
 let initialState = {
-    isModalLoginWindowAcive: false,
+    isModalLoginWindowActive: false,
     isCapthaActive: false,
     captchaURL: null,
     isLoginButtonClicked: false,
-    responseErrorText: null
+    responseErrorText: null,
+    isLoginRequirementActive: false
 };
 
 const loginModalWindowReducer = (state = initialState, action) => {
@@ -16,7 +18,7 @@ const loginModalWindowReducer = (state = initialState, action) => {
         case IS_MODAL_LOGIN_WINDOW_ACTIVE: {
             const superState = {
                 ...state,
-                isModalLoginWindowAcive: action.isModalLoginWindowAcive
+                isModalLoginWindowActive: action.isModalLoginWindowActive
             };
             return superState;
         }
@@ -42,6 +44,14 @@ const loginModalWindowReducer = (state = initialState, action) => {
                 ...state,
                 isCapthaActive: action.isCapthaActive,
                 captchaURL: action.captchaURL
+            };
+            return superState;
+        }
+
+        case TOOGLE_IS_LOGIN_REQUIREMENT: {
+            const superState = {
+                ...state,
+                isLoginRequirementActive: action.isLoginRequirementActive
             };
             return superState;
         }
