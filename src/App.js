@@ -4,7 +4,7 @@ import HeaderContainer from "./UI/Header/HeaderContainer";
 import './App.css';
 import UsersPageContainer from "./UI/UsersPage/UsersPageContainer";
 import NotFoundPage from "./UI/NotFoundPage";
-import ProfilePageContainer from "./UI/ProfilePage/ProfilePageContainer";
+// import ProfilePageContainer from "./UI/ProfilePage/ProfilePageContainer";
 import MessagesPageContainer from './UI/MessagesPage/MessagesPageContainer';
 import LoginModalWindowContainer from "./UI/LoginModalWindow/LoginModalWindowContainer";
 import SideBarContainer from "./UI/SideBar/SideBarContainer";
@@ -16,17 +16,18 @@ import { getIsLoggedInSelector, getOwnerIdSelector, getRunUseEffectAppComponent 
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import AppPreloader from "./UI/common/AppPreloader";
+const ProfilePageContainer = React.lazy(() => import('./UI/ProfilePage/ProfilePageContainer'));
 
 const App = (props) => {
 
-  useEffect( () => {
-    if(props.runUseEffectAppComponent) {    // для того чтобы в useEffect в App.js делать запрос на сервер авторизован ли пользователь(me) только 1 раз при логине и логауте. useEffect делает 2 раза так как зависит от свойства стейта isLoggedIn, а при авторизации и логауте оно меняется и получается запрос уходит 2 раза
+  useEffect(() => {
+    if (props.runUseEffectAppComponent) {    // для того чтобы в useEffect в App.js делать запрос на сервер авторизован ли пользователь(me) только 1 раз при логине и логауте. useEffect делает 2 раза так как зависит от свойства стейта isLoggedIn, а при авторизации и логауте оно меняется и получается запрос уходит 2 раза
       props.setRunUseEffectAppComponent(false);
       props.initializedAppThunkCreator();
     }
   }, [props.isLoggedIn]);
 
-  if(!props.isAppInitialized) {
+  if (!props.isAppInitialized) {
     return <AppPreloader />
   }
 
@@ -46,12 +47,19 @@ const App = (props) => {
             { /* Если залогинены редиректнет на свой парофиль, если нет на профиль Димыча */}
             {
               props.isLoggedIn
-              ? <Route exact path="/" render={() => <Redirect to={"profile/" + props.ownerId} />} />
-              : <Route exact path="/" render={() => <Redirect to={"profile/" + 2} />} />
+                ? <Route exact path="/" render={() => <Redirect to={"profile/" + props.ownerId} />} />
+                : <Route exact path="/" render={() => <Redirect to={"profile/" + 2} />} />
             }
-            
+
             <Route path='/users' render={() => <UsersPageContainer />} />
-            <Route exact path='/profile/:userId' render={() => <ProfilePageContainer />} />
+
+            <Route exact path='/profile/:userId' render={() => {
+              return <React.Suspense fallback={<AppPreloader />}>
+                <ProfilePageContainer />
+              </React.Suspense>
+            }} />
+
+            {/* <Route exact path='/profile/:userId' render={() => <ProfilePageContainer />} /> */}
             <Route path='/messages' render={() => <MessagesPageContainer />} />
             <Route path='*' render={() => <NotFoundPage />} />
           </Switch>
