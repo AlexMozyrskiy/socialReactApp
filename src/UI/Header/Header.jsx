@@ -10,7 +10,7 @@ const Header = (props) => {
                 <div className="header__flex-wrapper">
 
                     <div className="header__logo-and-title">
-                        <img src="#" alt="logo" className="header__logo" />
+                        {/* <img src="#" alt="logo" className="header__logo" /> */}
                         <h2 className="header__title">JS Friend Finder</h2>
                     </div>
 
