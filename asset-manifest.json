@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/socialReactApp/static/css/main.bea2c141.chunk.css",
-    "main.js": "/socialReactApp/static/js/main.8fb781b6.chunk.js",
-    "main.js.map": "/socialReactApp/static/js/main.8fb781b6.chunk.js.map",
-    "runtime-main.js": "/socialReactApp/static/js/runtime-main.68198b6c.js",
-    "runtime-main.js.map": "/socialReactApp/static/js/runtime-main.68198b6c.js.map",
-    "static/js/2.baa87ad9.chunk.js": "/socialReactApp/static/js/2.baa87ad9.chunk.js",
-    "static/js/2.baa87ad9.chunk.js.map": "/socialReactApp/static/js/2.baa87ad9.chunk.js.map",
-    "static/js/3.8e2e494d.chunk.js": "/socialReactApp/static/js/3.8e2e494d.chunk.js",
-    "static/js/3.8e2e494d.chunk.js.map": "/socialReactApp/static/js/3.8e2e494d.chunk.js.map",
+    "main.js": "/socialReactApp/static/js/main.80590209.chunk.js",
+    "main.js.map": "/socialReactApp/static/js/main.80590209.chunk.js.map",
+    "runtime-main.js": "/socialReactApp/static/js/runtime-main.5f895453.js",
+    "runtime-main.js.map": "/socialReactApp/static/js/runtime-main.5f895453.js.map",
+    "static/js/2.56994a35.chunk.js": "/socialReactApp/static/js/2.56994a35.chunk.js",
+    "static/js/2.56994a35.chunk.js.map": "/socialReactApp/static/js/2.56994a35.chunk.js.map",
+    "static/js/3.c2ebb528.chunk.js": "/socialReactApp/static/js/3.c2ebb528.chunk.js",
+    "static/js/3.c2ebb528.chunk.js.map": "/socialReactApp/static/js/3.c2ebb528.chunk.js.map",
     "static/js/4.9c87b590.chunk.js": "/socialReactApp/static/js/4.9c87b590.chunk.js",
     "static/js/4.9c87b590.chunk.js.map": "/socialReactApp/static/js/4.9c87b590.chunk.js.map",
     "index.html": "/socialReactApp/index.html",
     "static/css/main.bea2c141.chunk.css.map": "/socialReactApp/static/css/main.bea2c141.chunk.css.map",
-    "static/js/2.baa87ad9.chunk.js.LICENSE.txt": "/socialReactApp/static/js/2.baa87ad9.chunk.js.LICENSE.txt",
+    "static/js/2.56994a35.chunk.js.LICENSE.txt": "/socialReactApp/static/js/2.56994a35.chunk.js.LICENSE.txt",
     "static/media/App.css": "/socialReactApp/static/media/Lato-Regular.c6e0c3c9.eot",
     "static/media/default_photo.png": "/socialReactApp/static/media/default_photo.816d7d33.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.68198b6c.js",
-    "static/js/2.baa87ad9.chunk.js",
+    "static/js/runtime-main.5f895453.js",
+    "static/js/2.56994a35.chunk.js",
     "static/css/main.bea2c141.chunk.css",
-    "static/js/main.8fb781b6.chunk.js"
+    "static/js/main.80590209.chunk.js"
   ]
 }
